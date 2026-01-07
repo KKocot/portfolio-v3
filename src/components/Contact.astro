@@ -1,0 +1,145 @@
+---
+import type { Translations } from '../i18n';
+import IconGithub from './icons/IconGithub.astro';
+import IconLinkedin from './icons/IconLinkedin.astro';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+
+const contact = {
+  email: 'k.kocot@bard-dev.com',
+  website: 'bard-dev.com',
+  location: 'Katowice, Poland (Remote)',
+};
+
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com/KKocot', icon: 'github' as const },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/krzysztof-kocot-b3043a220/',
+    icon: 'linkedin' as const,
+  },
+];
+
+const iconComponents = {
+  github: IconGithub,
+  linkedin: IconLinkedin,
+};
+---
+
+<section id="contact" class="py-24 lg:py-32">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <!-- Info -->
+      <div class="animate-on-scroll">
+        <span class="section-tag">{t.contact.tag}</span>
+        <h2 class="section-title mb-6 whitespace-pre-line">{t.contact.title}</h2>
+
+        <p class="mb-8" style="color: rgba(250, 250, 250, 0.6);">
+          {t.contact.description}
+        </p>
+
+        <!-- Contact Details -->
+        <div class="space-y-4 mb-8">
+          <a
+            href={`mailto:${contact.email}`}
+            class="flex items-center gap-4 transition-colors"
+            style="color: rgba(250, 250, 250, 0.6);"
+          >
+            <span class="text-xl">✉️</span>
+            <span class="hover:text-[#ff8833]">{contact.email}</span>
+          </a>
+
+          <a
+            href={`https://${contact.website}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 transition-colors"
+            style="color: rgba(250, 250, 250, 0.6);"
+          >
+            <span class="text-xl">🌐</span>
+            <span class="hover:text-[#ff8833]">{contact.website}</span>
+          </a>
+
+          <div class="flex items-center gap-4" style="color: rgba(250, 250, 250, 0.6);">
+            <span class="text-xl">📍</span>
+            <span>{contact.location}</span>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex gap-4">
+          {socialLinks.map((link) => {
+            const IconComponent = iconComponents[link.icon];
+            return (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.name}
+                class="w-11 h-11 flex items-center justify-center rounded-full transition-all duration-200 hover:-translate-y-0.5"
+                style="background: rgba(250, 250, 250, 0.05); border: 1px solid rgba(250, 250, 250, 0.1); color: rgba(250, 250, 250, 0.6);"
+              >
+                <IconComponent class="w-5 h-5" />
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form
+        action="https://formspree.io/f/your-form-id"
+        method="POST"
+        class="p-8 rounded-2xl animate-on-scroll"
+        style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+      >
+        <div class="mb-6">
+          <label for="name" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {t.contact.form.name}
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="input-field"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {t.contact.form.email}
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="input-field"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {t.contact.form.message}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="input-field resize-y min-h-[120px]"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">
+          {t.contact.form.submit}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

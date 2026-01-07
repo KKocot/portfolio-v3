@@ -1,0 +1,80 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+
+const skillCategories = [
+  {
+    title: t.skills.categories.frontend,
+    skills: [
+      { icon: '⚛️', name: 'React / Next.js' },
+      { icon: '📘', name: 'TypeScript' },
+      { icon: '🎨', name: 'Tailwind CSS' },
+      { icon: '🚀', name: 'Astro' },
+    ],
+  },
+  {
+    title: t.skills.categories.backend,
+    skills: [
+      { icon: '🟢', name: 'Node.js / Express' },
+      { icon: '🍞', name: 'Bun / Elysia' },
+      { icon: '🗄️', name: 'MongoDB' },
+      { icon: '🔗', name: 'REST APIs' },
+    ],
+  },
+  {
+    title: t.skills.categories.mobile,
+    skills: [
+      { icon: '📱', name: 'React Native' },
+      { icon: '🎭', name: 'Playwright' },
+      { icon: '✅', name: 'E2E Testing' },
+    ],
+  },
+  {
+    title: t.skills.categories.devops,
+    skills: [
+      { icon: '🐳', name: 'Docker' },
+      { icon: '▲', name: 'Vercel' },
+      { icon: '⚡', name: 'CI/CD' },
+      { icon: '📦', name: 'Turborepo' },
+    ],
+  },
+];
+---
+
+<section id="skills" class="py-24 lg:py-32">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="section-tag">{t.skills.tag}</span>
+      <h2 class="section-title whitespace-pre-line">{t.skills.title}</h2>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {skillCategories.map((category, index) => (
+        <div
+          class="skill-card animate-on-scroll"
+          style={`transition-delay: ${index * 100}ms`}
+        >
+          <h3 class="text-xs font-semibold uppercase tracking-wider mb-6 pb-4" style="color: rgba(250, 250, 250, 0.4); border-bottom: 1px solid rgba(250, 250, 250, 0.08);">
+            {category.title}
+          </h3>
+
+          <ul class="space-y-4">
+            {category.skills.map((skill) => (
+              <li class="flex items-center gap-3 text-sm">
+                <span class="text-xl">{skill.icon}</span>
+                <span style="color: rgba(250, 250, 250, 0.8);">{skill.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

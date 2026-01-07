@@ -1,0 +1,62 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+
+const stats = [
+  { number: '2+', label: t.about.stats.experience },
+  { number: '10+', label: t.about.stats.projects },
+  { number: '100%', label: t.about.stats.remote },
+];
+---
+
+<section id="about" class="py-24 lg:py-32" style="background: rgba(250, 250, 250, 0.02);">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="section-tag">{t.about.tag}</span>
+      <h2 class="section-title whitespace-pre-line">{t.about.title}</h2>
+    </div>
+
+    <!-- Content -->
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Text -->
+      <div class="animate-on-scroll">
+        <p class="text-xl font-medium text-white mb-6">
+          {t.about.lead}
+        </p>
+
+        {t.about.text.map((text) => (
+          <p class="mb-4" style="color: rgba(250, 250, 250, 0.6);">{text}</p>
+        ))}
+
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-8 mt-8 pt-8" style="border-top: 1px solid rgba(250, 250, 250, 0.08);">
+          {stats.map((stat) => (
+            <div class="flex flex-col">
+              <span class="text-3xl lg:text-4xl font-bold" style="color: var(--color-primary);">{stat.number}</span>
+              <span class="text-sm mt-1" style="color: rgba(250, 250, 250, 0.5);">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="flex justify-center animate-on-scroll">
+        <div class="relative">
+          <!-- Decorative frame -->
+          <div class="absolute top-5 left-5 right-[-20px] bottom-[-20px] rounded-2xl" style="border: 2px solid rgba(255, 136, 51, 0.3);"></div>
+
+          <!-- Image placeholder -->
+          <div class="relative z-10 w-64 h-80 sm:w-72 sm:h-96 rounded-2xl flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #ff8833, #cc5500);">
+            <span class="text-6xl font-bold text-black/20">KK</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+interface Props {
+  currentLang: 'en' | 'pl';
+}
+
+const { currentLang } = Astro.props;
+---
+
+<div class="lang-switch" id="lang-switch">
+  <button
+    class={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
+    data-lang="en"
+    aria-label="Switch to English"
+  >
+    EN
+  </button>
+  <button
+    class={`lang-btn ${currentLang === 'pl' ? 'active' : ''}`}
+    data-lang="pl"
+    aria-label="Przełącz na polski"
+  >
+    PL
+  </button>
+</div>
+
+<script>
+  const langSwitch = document.getElementById('lang-switch');
+  const buttons = langSwitch?.querySelectorAll('.lang-btn');
+
+  // Get current language from URL or localStorage
+  function getCurrentLang(): 'en' | 'pl' {
+    const path = window.location.pathname;
+    if (path.startsWith('/pl')) return 'pl';
+    const stored = localStorage.getItem('lang');
+    if (stored === 'pl' || stored === 'en') return stored;
+    return 'en';
+  }
+
+  // Set language
+  function setLang(lang: 'en' | 'pl') {
+    localStorage.setItem('lang', lang);
+    const currentPath = window.location.pathname;
+
+    if (lang === 'pl' && !currentPath.startsWith('/pl')) {
+      window.location.href = '/pl' + currentPath;
+    } else if (lang === 'en' && currentPath.startsWith('/pl')) {
+      window.location.href = currentPath.replace('/pl', '') || '/';
+    }
+  }
+
+  buttons?.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const lang = (btn as HTMLElement).dataset.lang as 'en' | 'pl';
+      setLang(lang);
+    });
+  });
+
+  // Update active state
+  const currentLang = getCurrentLang();
+  buttons?.forEach((btn) => {
+    const btnLang = (btn as HTMLElement).dataset.lang;
+    btn.classList.toggle('active', btnLang === currentLang);
+  });
+</script>
