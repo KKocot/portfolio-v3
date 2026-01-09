@@ -44,8 +44,8 @@ export interface Translations {
     viewProject: string;
     viewAll: string;
     descriptions: {
+      denser: string;
       conqsite: string;
-      excelReader: string;
       flashcards: string;
       stasiakOpal: string;
       shoppingList: string;
@@ -121,10 +121,10 @@ export const translations: Record<Language, Translations> = {
       viewProject: 'View project',
       viewAll: 'View all projects on GitHub',
       descriptions: {
+        denser:
+          'Commercial project - decentralized social media for Hive Blockchain. Large-scale app with blog and wallet modules, comprehensive testing, and Docker deployment.',
         conqsite:
           'A platform for gaming communities with advanced guild management, Discord integration, and extensive social features.',
-        excelReader:
-          'A tool for analyzing and visualizing CSV data. An intuitive interface allows for quick work with large datasets.',
         flashcards:
           'An educational app using spaced repetition method. Ideal for language learning and memorizing information.',
         stasiakOpal:
@@ -202,10 +202,10 @@ export const translations: Record<Language, Translations> = {
       viewProject: 'Zobacz projekt',
       viewAll: 'Zobacz wszystkie projekty na GitHub',
       descriptions: {
+        denser:
+          'Projekt komercyjny - zdecentralizowane media społecznościowe dla Hive Blockchain. Duża aplikacja z modułami blog i wallet, kompleksowymi testami i wdrożeniem Docker.',
         conqsite:
           'Platforma dla społeczności graczy z zaawansowanym systemem zarządzania gildiami, integracją z Discordem oraz rozbudowanymi funkcjami społecznościowymi.',
-        excelReader:
-          'Narzędzie do analizy i wizualizacji danych z plików CSV. Intuicyjny interfejs pozwala na szybką pracę z dużymi zbiorami danych.',
         flashcards:
           'Aplikacja edukacyjna wykorzystująca metodę powtórek rozłożonych w czasie. Idealna do nauki języków i zapamiętywania informacji.',
         stasiakOpal:
