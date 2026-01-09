@@ -1,0 +1,40 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-kkocot
+    restart: unless-stopped
+    networks:
+      - traefik-network
+    labels:
+      # Enable Traefik
+      - "traefik.enable=true"
+
+      # HTTP Router
+      - "traefik.http.routers.portfolio.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.portfolio.entrypoints=web"
+      - "traefik.http.routers.portfolio.middlewares=redirect-to-https@docker"
+
+      # HTTPS Router
+      - "traefik.http.routers.portfolio-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.portfolio-secure.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-secure.tls=true"
+      - "traefik.http.routers.portfolio-secure.tls.certresolver=letsencrypt"
+
+      # Service
+      - "traefik.http.services.portfolio.loadbalancer.server.port=80"
+
+      # Middleware - HTTPS redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+
+      # Security headers middleware
+      - "traefik.http.middlewares.portfolio-headers.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.portfolio-headers.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.portfolio-headers.headers.stsPreload=true"
+      - "traefik.http.routers.portfolio-secure.middlewares=portfolio-headers@docker"
+
+networks:
+  traefik-network:
+    external: true
