@@ -97,10 +97,9 @@ export const translations: Record<Language, Translations> = {
     about: {
       tag: 'About me',
       title: 'Passion for creating\ndigital solutions',
-      lead: "I'm a Full-Stack Developer with nearly 2 years of commercial experience. I specialize in building scalable web and mobile applications.",
+      lead: "I'm a Full-Stack Developer with nearly 3 years of commercial experience. I specialize in building scalable web and mobile applications.",
       text: [
         'I work as a freelancer, which allows me to take a flexible approach to each project and collaborate directly with clients. My goal is to deliver solutions that not only work but also delight users.',
-        'I value clean code, best practices, and continuous growth. I am active on GitHub, where I have earned Pull Shark and Quickdraw badges.',
       ],
       stats: {
         experience: 'Years of experience',
@@ -184,10 +183,9 @@ export const translations: Record<Language, Translations> = {
     about: {
       tag: 'O mnie',
       title: 'Pasja do tworzenia\ncyfrowych rozwiązań',
-      lead: 'Jestem Full-Stack Developerem z niemal 2-letnim doświadczeniem komercyjnym. Specjalizuję się w budowaniu skalowalnych aplikacji webowych i mobilnych.',
+      lead: 'Jestem Full-Stack Developerem z niemal 3-letnim doświadczeniem komercyjnym. Specjalizuję się w budowaniu skalowalnych aplikacji webowych i mobilnych.',
       text: [
         'Pracuję jako freelancer, co pozwala mi na elastyczne podejście do każdego projektu i bezpośrednią współpracę z klientami. Moim celem jest dostarczanie rozwiązań, które nie tylko działają, ale też zachwycają użytkowników.',
-        'Cenię czysty kod, dobre praktyki i ciągły rozwój. Aktywnie działam na GitHubie, gdzie zdobyłem odznaki Pull Shark i Quickdraw.',
       ],
       stats: {
         experience: 'Lata doświadczenia',

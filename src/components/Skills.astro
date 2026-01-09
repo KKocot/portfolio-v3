@@ -11,59 +11,74 @@ const { t } = Astro.props;
 const skillCategories = [
   {
     title: t.skills.categories.frontend,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'blue',
     skills: [
-      { icon: 'simple-icons:react', name: 'React', level: 90 },
-      { icon: 'simple-icons:nextdotjs', name: 'Next.js', level: 85 },
-      { icon: 'simple-icons:typescript', name: 'TypeScript', level: 90 },
-      { icon: 'simple-icons:tailwindcss', name: 'Tailwind CSS', level: 95 },
-      { icon: 'simple-icons:astro', name: 'Astro', level: 80 },
+      { icon: 'simple-icons:react', name: 'React' },
+      { icon: 'simple-icons:nextdotjs', name: 'Next.js' },
+      { icon: 'simple-icons:typescript', name: 'TypeScript' },
+      { icon: 'simple-icons:tailwindcss', name: 'Tailwind CSS' },
+      { icon: 'simple-icons:astro', name: 'Astro' },
+      { icon: 'simple-icons:figma', name: 'Figma' },
     ],
   },
   {
     title: t.skills.categories.backend,
-    color: 'from-green-500 to-emerald-500',
+    color: 'green',
     skills: [
-      { icon: 'simple-icons:nodedotjs', name: 'Node.js', level: 85 },
-      { icon: 'simple-icons:bun', name: 'Bun', level: 75 },
-      { icon: 'simple-icons:express', name: 'Express', level: 80 },
-      { icon: 'simple-icons:mongodb', name: 'MongoDB', level: 85 },
-      { icon: 'simple-icons:mongoose', name: 'Mongoose', level: 80 },
+      { icon: 'simple-icons:nodedotjs', name: 'Node.js' },
+      { icon: 'simple-icons:bun', name: 'Bun' },
+      { icon: 'simple-icons:express', name: 'Express' },
+      { icon: 'simple-icons:mongodb', name: 'MongoDB' },
+      { icon: 'simple-icons:zod', name: 'Zod' },
+      { icon: 'simple-icons:nginx', name: 'Nginx' },
     ],
   },
   {
     title: t.skills.categories.mobile,
-    color: 'from-purple-500 to-pink-500',
+    color: 'purple',
     skills: [
-      { icon: 'simple-icons:react', name: 'React Native', level: 75 },
-      { icon: 'simple-icons:expo', name: 'Expo', level: 70 },
-      { icon: 'simple-icons:playwright', name: 'Playwright', level: 80 },
-      { icon: 'simple-icons:jest', name: 'Jest', level: 70 },
+      { icon: 'simple-icons:react', name: 'React Native' },
+      { icon: 'simple-icons:expo', name: 'Expo' },
+      { icon: 'simple-icons:playwright', name: 'Playwright' },
+      { icon: 'simple-icons:jest', name: 'Jest' },
     ],
   },
   {
     title: t.skills.categories.devops,
-    color: 'from-orange-500 to-red-500',
+    color: 'orange',
     skills: [
-      { icon: 'simple-icons:docker', name: 'Docker', level: 80 },
-      { icon: 'simple-icons:git', name: 'Git', level: 90 },
-      { icon: 'simple-icons:vercel', name: 'Vercel', level: 85 },
-      { icon: 'simple-icons:githubactions', name: 'GitHub Actions', level: 75 },
-      { icon: 'simple-icons:turborepo', name: 'Turborepo', level: 70 },
+      { icon: 'simple-icons:docker', name: 'Docker' },
+      { icon: 'simple-icons:git', name: 'Git' },
+      { icon: 'simple-icons:vercel', name: 'Vercel' },
+      { icon: 'simple-icons:githubactions', name: 'GitHub Actions' },
+      { icon: 'simple-icons:turborepo', name: 'Turborepo' },
+      { icon: 'simple-icons:linux', name: 'Linux' },
     ],
   },
 ];
 
-const additionalTools = [
-  { icon: 'simple-icons:discord', name: 'Discord API' },
-  { icon: 'simple-icons:zod', name: 'Zod' },
-  { icon: 'simple-icons:prettier', name: 'Prettier' },
-  { icon: 'simple-icons:eslint', name: 'ESLint' },
-  { icon: 'simple-icons:visualstudiocode', name: 'VS Code' },
-  { icon: 'simple-icons:figma', name: 'Figma' },
-  { icon: 'simple-icons:linux', name: 'Linux' },
-  { icon: 'simple-icons:nginx', name: 'Nginx' },
-];
+const colorClasses: Record<string, { dot: string; icon: string; iconHover: string }> = {
+  blue: {
+    dot: 'bg-blue-500',
+    icon: 'text-blue-400/60',
+    iconHover: 'group-hover/skill:text-blue-400',
+  },
+  green: {
+    dot: 'bg-emerald-500',
+    icon: 'text-emerald-400/60',
+    iconHover: 'group-hover/skill:text-emerald-400',
+  },
+  purple: {
+    dot: 'bg-purple-500',
+    icon: 'text-purple-400/60',
+    iconHover: 'group-hover/skill:text-purple-400',
+  },
+  orange: {
+    dot: 'bg-orange-500',
+    icon: 'text-orange-400/60',
+    iconHover: 'group-hover/skill:text-orange-400',
+  },
+};
 ---
 
 <section id="skills" class="py-24 lg:py-32">
@@ -75,58 +90,39 @@ const additionalTools = [
     </div>
 
     <!-- Main Skills Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-      {skillCategories.map((category, index) => (
-        <div
-          class="skill-card animate-on-scroll group"
-          style={`transition-delay: ${index * 100}ms`}
-        >
-          <!-- Category Header -->
-          <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(250, 250, 250, 0.08);">
-            <div class={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
-            <h3 class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(250, 250, 250, 0.5);">
-              {category.title}
-            </h3>
-          </div>
-
-          <!-- Skills List -->
-          <ul class="space-y-4">
-            {category.skills.map((skill) => (
-              <li class="group/skill">
-                <div class="flex items-center gap-3 mb-1.5">
-                  <Icon name={skill.icon} class="w-5 h-5 text-white/60 group-hover/skill:text-white transition-colors" />
-                  <span class="text-sm text-white/80 group-hover/skill:text-white transition-colors">{skill.name}</span>
-                </div>
-                <!-- Progress Bar -->
-                <div class="h-1 rounded-full overflow-hidden" style="background: rgba(250, 250, 250, 0.1);">
-                  <div
-                    class={`h-full rounded-full bg-gradient-to-r ${category.color} transition-all duration-500`}
-                    style={`width: ${skill.level}%`}
-                  ></div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-
-    <!-- Additional Tools -->
-    <div class="animate-on-scroll" style="transition-delay: 400ms">
-      <h3 class="text-center text-xs font-semibold uppercase tracking-wider mb-6" style="color: rgba(250, 250, 250, 0.4);">
-        Also working with
-      </h3>
-      <div class="flex flex-wrap justify-center gap-3">
-        {additionalTools.map((tool) => (
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {skillCategories.map((category, index) => {
+        const colors = colorClasses[category.color];
+        return (
           <div
-            class="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:border-white/20"
-            style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+            class="skill-card animate-on-scroll group"
+            style={`transition-delay: ${index * 100}ms`}
           >
-            <Icon name={tool.icon} class="w-4 h-4 text-white/50" />
-            <span class="text-xs text-white/60">{tool.name}</span>
+            <!-- Category Header -->
+            <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(250, 250, 250, 0.08);">
+              <div class={`w-2 h-2 rounded-full ${colors.dot}`}></div>
+              <h3 class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(250, 250, 250, 0.5);">
+                {category.title}
+              </h3>
+            </div>
+
+            <!-- Skills List -->
+            <div class="grid grid-cols-2 gap-4">
+              {category.skills.map((skill) => (
+                <div class="group/skill flex flex-col items-center gap-2 p-3 rounded-lg transition-all duration-200 hover:bg-white/5">
+                  <Icon
+                    name={skill.icon}
+                    class={`w-8 h-8 ${colors.icon} ${colors.iconHover} transition-colors duration-200`}
+                  />
+                  <span class="text-xs text-white/60 group-hover/skill:text-white/90 transition-colors text-center">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   </div>
 </section>
