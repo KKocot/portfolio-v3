@@ -51,6 +51,7 @@ export interface Translations {
       excelReader: string;
       stasiakOpal: string;
       flashcards: string;
+      portfolio: string;
     };
   };
   contact: {
@@ -137,6 +138,8 @@ export const translations: Record<Language, Translations> = {
           'Landing page for local coal business. Built with Astro, optimized for performance and SEO.',
         flashcards:
           'Educational app for learning with flashcards. Spaced repetition method, progress tracking.',
+        portfolio:
+          'Personal portfolio built with Astro and Tailwind CSS. Static site with i18n support and contact form.',
       },
     },
     contact: {
@@ -222,6 +225,8 @@ export const translations: Record<Language, Translations> = {
           'Strona landingowa dla lokalnego biznesu węglowego. Zbudowana w Astro, zoptymalizowana pod wydajność i SEO.',
         flashcards:
           'Aplikacja edukacyjna do nauki z fiszkami. Metoda powtórek rozłożonych w czasie, śledzenie postępów.',
+        portfolio:
+          'Portfolio osobiste zbudowane w Astro i Tailwind CSS. Statyczna strona z obsługą i18n i formularzem kontaktowym.',
       },
     },
     contact: {

@@ -100,6 +100,16 @@ const otherProjects: Project[] = [
       { label: 'Live', url: 'https://flashcards.bard-dev.com', primary: true },
     ],
   },
+  {
+    title: 'Portfolio',
+    description: t.projects.descriptions.portfolio,
+    tags: ['Astro', 'Tailwind', 'TypeScript'],
+    type: 'Personal',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/KKocot/portfolio-v3' },
+      { label: 'Live', url: 'https://portfolio.bard-dev.com', primary: true },
+    ],
+  },
 ];
 
 const typeColors: Record<string, string> = {
@@ -110,6 +120,7 @@ const typeColors: Record<string, string> = {
   'Tool': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
   'Client': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
   'Education': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  'Personal': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
 };
 ---
 
@@ -161,10 +172,10 @@ const typeColors: Record<string, string> = {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 ${
+                class={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
                   link.primary
-                    ? 'bg-[#ff8833] text-black hover:bg-[#ffaa66]'
-                    : 'bg-white/10 text-white/70 hover:bg-white/15 hover:text-white'
+                    ? 'border-white/30 text-white hover:border-[#ff8833] hover:text-[#ff8833]'
+                    : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white/80'
                 }`}
               >
                 {link.label}
@@ -216,10 +227,10 @@ const typeColors: Record<string, string> = {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full transition-all duration-200 hover:-translate-y-0.5 ${
+                class={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
                   link.primary
-                    ? 'bg-[#ff8833] text-black hover:bg-[#ffaa66]'
-                    : 'bg-white/10 text-white/60 hover:bg-white/15 hover:text-white'
+                    ? 'border-white/30 text-white hover:border-[#ff8833] hover:text-[#ff8833]'
+                    : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white/80'
                 }`}
               >
                 {link.label}
