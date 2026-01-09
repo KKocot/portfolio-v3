@@ -61,8 +61,8 @@ const { t, name } = Astro.props;
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+  <!-- Scroll Indicator - hidden on mobile -->
+  <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
     <span class="text-xs uppercase tracking-widest" style="color: rgba(250, 250, 250, 0.4);">{t.hero.scroll}</span>
     <div class="w-px h-10 scroll-line" style="background: linear-gradient(to bottom, rgba(250, 250, 250, 0.4), transparent);"></div>
   </div>

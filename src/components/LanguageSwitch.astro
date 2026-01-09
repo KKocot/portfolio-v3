@@ -6,7 +6,7 @@ interface Props {
 const { currentLang } = Astro.props;
 ---
 
-<div class="lang-switch" id="lang-switch">
+<div class="lang-switch">
   <button
     class={`lang-btn ${currentLang === 'en' ? 'active' : ''}`}
     data-lang="en"
@@ -24,8 +24,8 @@ const { currentLang } = Astro.props;
 </div>
 
 <script>
-  const langSwitch = document.getElementById('lang-switch');
-  const buttons = langSwitch?.querySelectorAll('.lang-btn');
+  // Get all language switches (desktop and mobile)
+  const langSwitches = document.querySelectorAll('.lang-switch');
 
   // Get current language from URL or localStorage
   function getCurrentLang(): 'en' | 'pl' {
@@ -48,17 +48,22 @@ const { currentLang } = Astro.props;
     }
   }
 
-  buttons?.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const lang = (btn as HTMLElement).dataset.lang as 'en' | 'pl';
-      setLang(lang);
-    });
-  });
+  // Apply to all language switches
+  langSwitches.forEach(langSwitch => {
+    const buttons = langSwitch.querySelectorAll('.lang-btn');
 
-  // Update active state
-  const currentLang = getCurrentLang();
-  buttons?.forEach((btn) => {
-    const btnLang = (btn as HTMLElement).dataset.lang;
-    btn.classList.toggle('active', btnLang === currentLang);
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = (btn as HTMLElement).dataset.lang as 'en' | 'pl';
+        setLang(lang);
+      });
+    });
+
+    // Update active state
+    const currentLang = getCurrentLang();
+    buttons.forEach((btn) => {
+      const btnLang = (btn as HTMLElement).dataset.lang;
+      btn.classList.toggle('active', btnLang === currentLang);
+    });
   });
 </script>
