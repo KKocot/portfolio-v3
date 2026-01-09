@@ -11,12 +11,12 @@ const { t } = Astro.props;
 const startDate = new Date(2023, 3, 1); // April 2023 (month is 0-indexed)
 const now = new Date();
 const diffYears = (now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-const yearsExp = Math.floor(diffYears);
+const yearsExp = Math.ceil(diffYears);
 
 const stats = [
   { number: `${yearsExp}+`, label: t.about.stats.experience },
   { number: '10+', label: t.about.stats.projects },
-  { number: '20+', label: t.about.stats.technologies },
+  { number: '1500+', label: t.about.stats.commits },
 ];
 ---
 
