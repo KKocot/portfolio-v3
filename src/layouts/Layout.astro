@@ -35,19 +35,35 @@ const {
       // Mobile menu toggle
       const menuBtn = document.querySelector('.mobile-menu-btn');
       const navLinks = document.querySelector('.nav-links-mobile');
+      const menuLines = menuBtn?.querySelectorAll('.menu-line');
+
+      function toggleMenu(open: boolean) {
+        if (!navLinks || !menuLines) return;
+
+        if (open) {
+          navLinks.classList.remove('hidden');
+          navLinks.classList.add('flex');
+          menuLines[0]?.classList.add('rotate-45', 'translate-y-2');
+          menuLines[1]?.classList.add('opacity-0');
+          menuLines[2]?.classList.add('-rotate-45', '-translate-y-2');
+        } else {
+          navLinks.classList.add('hidden');
+          navLinks.classList.remove('flex');
+          menuLines[0]?.classList.remove('rotate-45', 'translate-y-2');
+          menuLines[1]?.classList.remove('opacity-0');
+          menuLines[2]?.classList.remove('-rotate-45', '-translate-y-2');
+        }
+      }
+
       menuBtn?.addEventListener('click', () => {
-        navLinks?.classList.toggle('hidden');
-        menuBtn.querySelectorAll('span').forEach((span, i) => {
-          if (i === 0) span.classList.toggle('rotate-45');
-          if (i === 1) span.classList.toggle('opacity-0');
-          if (i === 2) span.classList.toggle('-rotate-45');
-        });
+        const isOpen = !navLinks?.classList.contains('hidden');
+        toggleMenu(!isOpen);
       });
 
       // Close mobile menu on link click
       navLinks?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-          navLinks.classList.add('hidden');
+          toggleMenu(false);
         });
       });
 

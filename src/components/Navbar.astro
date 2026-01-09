@@ -56,18 +56,18 @@ const navLinks = [
       <div class="flex md:hidden items-center gap-4">
         <LanguageSwitch currentLang={lang} />
         <button
-          class="mobile-menu-btn flex flex-col gap-1.5 p-2"
+          class="mobile-menu-btn flex flex-col justify-center items-center w-10 h-10 gap-1.5"
           aria-label="Menu"
         >
-          <span class="w-6 h-0.5 bg-white transition-all duration-200 origin-center"></span>
-          <span class="w-6 h-0.5 bg-white transition-all duration-200"></span>
-          <span class="w-6 h-0.5 bg-white transition-all duration-200 origin-center"></span>
+          <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="menu-line w-6 h-0.5 bg-white transition-all duration-300"></span>
         </button>
       </div>
     </div>
 
     <!-- Mobile Navigation -->
-    <ul class="nav-links-mobile hidden md:hidden flex-col gap-4 pb-6">
+    <ul class="nav-links-mobile hidden flex-col gap-4 pb-6 md:!hidden">
       {navLinks.map((link) => (
         <li>
           <a
