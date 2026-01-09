@@ -39,7 +39,8 @@
     color: rgba(250, 250, 250, 0.6);
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.active {
     color: #fafafa;
   }
 
@@ -49,7 +50,8 @@
     background-color: var(--color-primary);
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link.active::after {
     @apply w-full;
   }
 
