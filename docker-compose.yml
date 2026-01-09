@@ -6,7 +6,7 @@ services:
     container_name: portfolio-kkocot
     restart: unless-stopped
     networks:
-      - traefik-network
+      - common_proxy_network
     labels:
       # Enable Traefik
       - "traefik.enable=true"
@@ -36,5 +36,5 @@ services:
       - "traefik.http.routers.portfolio-secure.middlewares=portfolio-headers@docker"
 
 networks:
-  traefik-network:
+  common_proxy_network:
     external: true
