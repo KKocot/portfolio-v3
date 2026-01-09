@@ -46,9 +46,11 @@ export interface Translations {
     descriptions: {
       denser: string;
       conqsite: string;
-      flashcards: string;
-      stasiakOpal: string;
+      elysiaBackend: string;
       shoppingList: string;
+      excelReader: string;
+      stasiakOpal: string;
+      flashcards: string;
     };
   };
   contact: {
@@ -122,15 +124,19 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'View all projects on GitHub',
       descriptions: {
         denser:
-          'Commercial project - decentralized social media for Hive Blockchain. Large-scale app with blog and wallet modules, comprehensive testing, and Docker deployment.',
+          'Decentralized social media for Hive Blockchain. Blog and wallet modules, E2E testing with Playwright, monorepo with Turbo.',
         conqsite:
-          'A platform for gaming communities with advanced guild management, Discord integration, and extensive social features.',
-        flashcards:
-          'An educational app using spaced repetition method. Ideal for language learning and memorizing information.',
-        stasiakOpal:
-          'An optimized landing page for a local business. Focus on performance, SEO, and excellent user experience.',
+          'Gaming community platform with guild management, Discord bot integration, real-time features, and social tools.',
+        elysiaBackend:
+          'Universal REST API powering multiple projects. Rate limiting, Telegram notifications, multi-database support.',
         shoppingList:
-          'A mobile app for managing shopping lists. Easy to use, with the ability to share lists with family.',
+          'Cross-platform mobile app for shared shopping lists. Real-time sync, family sharing, offline support.',
+        excelReader:
+          'CSV data analysis tool with interactive visualizations. Drag & drop upload, chart generation, data filtering.',
+        stasiakOpal:
+          'Business landing page with focus on Core Web Vitals, SEO optimization, and conversion-oriented design.',
+        flashcards:
+          'Learning app with spaced repetition algorithm. Progress tracking, multiple decks, keyboard shortcuts.',
       },
     },
     contact: {
@@ -203,15 +209,19 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'Zobacz wszystkie projekty na GitHub',
       descriptions: {
         denser:
-          'Projekt komercyjny - zdecentralizowane media społecznościowe dla Hive Blockchain. Duża aplikacja z modułami blog i wallet, kompleksowymi testami i wdrożeniem Docker.',
+          'Zdecentralizowane media społecznościowe dla Hive Blockchain. Moduły blog i wallet, testy E2E z Playwright, monorepo z Turbo.',
         conqsite:
-          'Platforma dla społeczności graczy z zaawansowanym systemem zarządzania gildiami, integracją z Discordem oraz rozbudowanymi funkcjami społecznościowymi.',
-        flashcards:
-          'Aplikacja edukacyjna wykorzystująca metodę powtórek rozłożonych w czasie. Idealna do nauki języków i zapamiętywania informacji.',
-        stasiakOpal:
-          'Zoptymalizowana strona landingowa dla lokalnego biznesu. Nacisk na wydajność, SEO i doskonałe doświadczenie użytkownika.',
+          'Platforma dla społeczności graczy z zarządzaniem gildiami, integracją bota Discord, funkcjami real-time.',
+        elysiaBackend:
+          'Uniwersalne REST API obsługujące wiele projektów. Rate limiting, powiadomienia Telegram, multi-database.',
         shoppingList:
-          'Mobilna aplikacja do zarządzania listami zakupów. Prosta w obsłudze, z możliwością współdzielenia list z rodziną.',
+          'Wieloplatformowa aplikacja mobilna do list zakupów. Synchronizacja real-time, współdzielenie, tryb offline.',
+        excelReader:
+          'Narzędzie do analizy danych CSV z wizualizacjami. Drag & drop, generowanie wykresów, filtrowanie danych.',
+        stasiakOpal:
+          'Strona biznesowa z naciskiem na Core Web Vitals, optymalizację SEO i design zorientowany na konwersję.',
+        flashcards:
+          'Aplikacja do nauki z algorytmem powtórek. Śledzenie postępów, wiele talii, skróty klawiaturowe.',
       },
     },
     contact: {
