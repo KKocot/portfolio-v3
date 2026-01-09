@@ -3,37 +3,30 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: portfolio:latest
     container_name: portfolio-kkocot
-    restart: unless-stopped
+    restart: always
+    tty: true
+    stdin_open: true
     networks:
       - common_proxy_network
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
     labels:
-      # Enable Traefik
       - "traefik.enable=true"
-
-      # HTTP Router
       - "traefik.http.routers.portfolio.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.portfolio.entrypoints=web"
-      - "traefik.http.routers.portfolio.middlewares=redirect-to-https@docker"
-
-      # HTTPS Router
-      - "traefik.http.routers.portfolio-secure.rule=Host(`${DOMAIN}`)"
-      - "traefik.http.routers.portfolio-secure.entrypoints=websecure"
-      - "traefik.http.routers.portfolio-secure.tls=true"
-      - "traefik.http.routers.portfolio-secure.tls.certresolver=letsencrypt"
-
-      # Service
+      - "traefik.http.routers.portfolio.tls=true"
       - "traefik.http.services.portfolio.loadbalancer.server.port=80"
-
-      # Middleware - HTTPS redirect
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
-
-      # Security headers middleware
-      - "traefik.http.middlewares.portfolio-headers.headers.stsSeconds=31536000"
-      - "traefik.http.middlewares.portfolio-headers.headers.stsIncludeSubdomains=true"
-      - "traefik.http.middlewares.portfolio-headers.headers.stsPreload=true"
-      - "traefik.http.routers.portfolio-secure.middlewares=portfolio-headers@docker"
+      - "traefik.http.routers.portfolio.service=portfolio"
+      - "traefik.http.routers.portfolio.entrypoints=websecure"
+      - "traefik.http.services.portfolio.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.portfolio.loadbalancer.healthcheck.interval=30s"
 
 networks:
   common_proxy_network:
