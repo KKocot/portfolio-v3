@@ -1,5 +1,6 @@
 ---
 import type { Translations } from '../i18n';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   t: Translations;
@@ -10,39 +11,58 @@ const { t } = Astro.props;
 const skillCategories = [
   {
     title: t.skills.categories.frontend,
+    color: 'from-blue-500 to-cyan-500',
     skills: [
-      { icon: '⚛️', name: 'React / Next.js' },
-      { icon: '📘', name: 'TypeScript' },
-      { icon: '🎨', name: 'Tailwind CSS' },
-      { icon: '🚀', name: 'Astro' },
+      { icon: 'simple-icons:react', name: 'React', level: 90 },
+      { icon: 'simple-icons:nextdotjs', name: 'Next.js', level: 85 },
+      { icon: 'simple-icons:typescript', name: 'TypeScript', level: 90 },
+      { icon: 'simple-icons:tailwindcss', name: 'Tailwind CSS', level: 95 },
+      { icon: 'simple-icons:astro', name: 'Astro', level: 80 },
     ],
   },
   {
     title: t.skills.categories.backend,
+    color: 'from-green-500 to-emerald-500',
     skills: [
-      { icon: '🟢', name: 'Node.js / Express' },
-      { icon: '🍞', name: 'Bun / Elysia' },
-      { icon: '🗄️', name: 'MongoDB' },
-      { icon: '🔗', name: 'REST APIs' },
+      { icon: 'simple-icons:nodedotjs', name: 'Node.js', level: 85 },
+      { icon: 'simple-icons:bun', name: 'Bun', level: 75 },
+      { icon: 'simple-icons:express', name: 'Express', level: 80 },
+      { icon: 'simple-icons:mongodb', name: 'MongoDB', level: 85 },
+      { icon: 'simple-icons:mongoose', name: 'Mongoose', level: 80 },
     ],
   },
   {
     title: t.skills.categories.mobile,
+    color: 'from-purple-500 to-pink-500',
     skills: [
-      { icon: '📱', name: 'React Native' },
-      { icon: '🎭', name: 'Playwright' },
-      { icon: '✅', name: 'E2E Testing' },
+      { icon: 'simple-icons:react', name: 'React Native', level: 75 },
+      { icon: 'simple-icons:expo', name: 'Expo', level: 70 },
+      { icon: 'simple-icons:playwright', name: 'Playwright', level: 80 },
+      { icon: 'simple-icons:jest', name: 'Jest', level: 70 },
     ],
   },
   {
     title: t.skills.categories.devops,
+    color: 'from-orange-500 to-red-500',
     skills: [
-      { icon: '🐳', name: 'Docker' },
-      { icon: '▲', name: 'Vercel' },
-      { icon: '⚡', name: 'CI/CD' },
-      { icon: '📦', name: 'Turborepo' },
+      { icon: 'simple-icons:docker', name: 'Docker', level: 80 },
+      { icon: 'simple-icons:git', name: 'Git', level: 90 },
+      { icon: 'simple-icons:vercel', name: 'Vercel', level: 85 },
+      { icon: 'simple-icons:githubactions', name: 'GitHub Actions', level: 75 },
+      { icon: 'simple-icons:turborepo', name: 'Turborepo', level: 70 },
     ],
   },
+];
+
+const additionalTools = [
+  { icon: 'simple-icons:discord', name: 'Discord API' },
+  { icon: 'simple-icons:zod', name: 'Zod' },
+  { icon: 'simple-icons:prettier', name: 'Prettier' },
+  { icon: 'simple-icons:eslint', name: 'ESLint' },
+  { icon: 'simple-icons:visualstudiocode', name: 'VS Code' },
+  { icon: 'simple-icons:figma', name: 'Figma' },
+  { icon: 'simple-icons:linux', name: 'Linux' },
+  { icon: 'simple-icons:nginx', name: 'Nginx' },
 ];
 ---
 
@@ -54,27 +74,59 @@ const skillCategories = [
       <h2 class="section-title whitespace-pre-line">{t.skills.title}</h2>
     </div>
 
-    <!-- Skills Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Main Skills Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       {skillCategories.map((category, index) => (
         <div
-          class="skill-card animate-on-scroll"
+          class="skill-card animate-on-scroll group"
           style={`transition-delay: ${index * 100}ms`}
         >
-          <h3 class="text-xs font-semibold uppercase tracking-wider mb-6 pb-4" style="color: rgba(250, 250, 250, 0.4); border-bottom: 1px solid rgba(250, 250, 250, 0.08);">
-            {category.title}
-          </h3>
+          <!-- Category Header -->
+          <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid rgba(250, 250, 250, 0.08);">
+            <div class={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
+            <h3 class="text-xs font-semibold uppercase tracking-wider" style="color: rgba(250, 250, 250, 0.5);">
+              {category.title}
+            </h3>
+          </div>
 
+          <!-- Skills List -->
           <ul class="space-y-4">
             {category.skills.map((skill) => (
-              <li class="flex items-center gap-3 text-sm">
-                <span class="text-xl">{skill.icon}</span>
-                <span style="color: rgba(250, 250, 250, 0.8);">{skill.name}</span>
+              <li class="group/skill">
+                <div class="flex items-center gap-3 mb-1.5">
+                  <Icon name={skill.icon} class="w-5 h-5 text-white/60 group-hover/skill:text-white transition-colors" />
+                  <span class="text-sm text-white/80 group-hover/skill:text-white transition-colors">{skill.name}</span>
+                </div>
+                <!-- Progress Bar -->
+                <div class="h-1 rounded-full overflow-hidden" style="background: rgba(250, 250, 250, 0.1);">
+                  <div
+                    class={`h-full rounded-full bg-gradient-to-r ${category.color} transition-all duration-500`}
+                    style={`width: ${skill.level}%`}
+                  ></div>
+                </div>
               </li>
             ))}
           </ul>
         </div>
       ))}
+    </div>
+
+    <!-- Additional Tools -->
+    <div class="animate-on-scroll" style="transition-delay: 400ms">
+      <h3 class="text-center text-xs font-semibold uppercase tracking-wider mb-6" style="color: rgba(250, 250, 250, 0.4);">
+        Also working with
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        {additionalTools.map((tool) => (
+          <div
+            class="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:border-white/20"
+            style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+          >
+            <Icon name={tool.icon} class="w-4 h-4 text-white/50" />
+            <span class="text-xs text-white/60">{tool.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
