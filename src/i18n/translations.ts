@@ -124,19 +124,19 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'View all projects on GitHub',
       descriptions: {
         denser:
-          'Decentralized social media for Hive Blockchain. Blog and wallet modules, E2E testing with Playwright, monorepo with Turbo.',
+          'Decentralized social media frontend for Hive Blockchain. Successor to hive.blog with blog and wallet modules.',
         conqsite:
-          'Gaming community platform with guild management, Discord bot integration, real-time features, and social tools.',
+          'Platform for Conquerors Blade gaming community. Guild management, lineup builder, Discord bot integration.',
         elysiaBackend:
-          'Universal REST API powering multiple projects. Rate limiting, Telegram notifications, multi-database support.',
+          'REST API built with Bun and Elysia framework. Serves multiple frontend projects with shared database.',
         shoppingList:
-          'Cross-platform mobile app for shared shopping lists. Real-time sync, family sharing, offline support.',
+          'Mobile app for managing shopping lists built with React Native and Expo.',
         excelReader:
-          'CSV data analysis tool with interactive visualizations. Drag & drop upload, chart generation, data filtering.',
+          'Web tool for uploading and analyzing CSV files. Data visualization with interactive charts.',
         stasiakOpal:
-          'Business landing page with focus on Core Web Vitals, SEO optimization, and conversion-oriented design.',
+          'Landing page for local coal business. Built with Astro, optimized for performance and SEO.',
         flashcards:
-          'Learning app with spaced repetition algorithm. Progress tracking, multiple decks, keyboard shortcuts.',
+          'Educational app for learning with flashcards. Spaced repetition method, progress tracking.',
       },
     },
     contact: {
@@ -209,19 +209,19 @@ export const translations: Record<Language, Translations> = {
       viewAll: 'Zobacz wszystkie projekty na GitHub',
       descriptions: {
         denser:
-          'Zdecentralizowane media społecznościowe dla Hive Blockchain. Moduły blog i wallet, testy E2E z Playwright, monorepo z Turbo.',
+          'Frontend zdecentralizowanych mediów społecznościowych dla Hive Blockchain. Następca hive.blog z modułami blog i wallet.',
         conqsite:
-          'Platforma dla społeczności graczy z zarządzaniem gildiami, integracją bota Discord, funkcjami real-time.',
+          'Platforma dla społeczności Conquerors Blade. Zarządzanie gildiami, kreator składów, integracja z botem Discord.',
         elysiaBackend:
-          'Uniwersalne REST API obsługujące wiele projektów. Rate limiting, powiadomienia Telegram, multi-database.',
+          'REST API zbudowane z Bun i frameworkiem Elysia. Obsługuje wiele projektów frontendowych ze wspólną bazą danych.',
         shoppingList:
-          'Wieloplatformowa aplikacja mobilna do list zakupów. Synchronizacja real-time, współdzielenie, tryb offline.',
+          'Aplikacja mobilna do zarządzania listami zakupów zbudowana z React Native i Expo.',
         excelReader:
-          'Narzędzie do analizy danych CSV z wizualizacjami. Drag & drop, generowanie wykresów, filtrowanie danych.',
+          'Narzędzie webowe do wgrywania i analizy plików CSV. Wizualizacja danych z interaktywnymi wykresami.',
         stasiakOpal:
-          'Strona biznesowa z naciskiem na Core Web Vitals, optymalizację SEO i design zorientowany na konwersję.',
+          'Strona landingowa dla lokalnego biznesu węglowego. Zbudowana w Astro, zoptymalizowana pod wydajność i SEO.',
         flashcards:
-          'Aplikacja do nauki z algorytmem powtórek. Śledzenie postępów, wiele talii, skróty klawiaturowe.',
+          'Aplikacja edukacyjna do nauki z fiszkami. Metoda powtórek rozłożonych w czasie, śledzenie postępów.',
       },
     },
     contact: {
