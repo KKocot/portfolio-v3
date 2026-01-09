@@ -60,6 +60,11 @@ export interface Translations {
       email: string;
       message: string;
       submit: string;
+      sending: string;
+    };
+    toast: {
+      success: string;
+      error: string;
     };
   };
   footer: {
@@ -138,6 +143,11 @@ export const translations: Record<Language, Translations> = {
         email: 'Email',
         message: 'Message',
         submit: 'Send message',
+        sending: 'Sending...',
+      },
+      toast: {
+        success: 'Thank you for your message! I will get back to you soon.',
+        error: 'Something went wrong. Please try again later.',
       },
     },
     footer: {
@@ -214,6 +224,11 @@ export const translations: Record<Language, Translations> = {
         email: 'Email',
         message: 'Wiadomość',
         submit: 'Wyślij wiadomość',
+        sending: 'Wysyłanie...',
+      },
+      toast: {
+        success: 'Dziękuję za wiadomość! Odezwę się wkrótce.',
+        error: 'Coś poszło nie tak. Spróbuj ponownie później.',
       },
     },
     footer: {

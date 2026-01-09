@@ -28,6 +28,11 @@ const iconComponents = {
   github: IconGithub,
   linkedin: IconLinkedin,
 };
+
+const toastMessages = {
+  success: t.contact.toast.success,
+  error: t.contact.toast.error,
+};
 ---
 
 <section id="contact" class="py-24 lg:py-32">
@@ -92,10 +97,11 @@ const iconComponents = {
 
       <!-- Form -->
       <form
-        action="https://formspree.io/f/your-form-id"
-        method="POST"
+        id="contact-form"
         class="p-8 rounded-2xl animate-on-scroll"
         style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+        data-success-message={toastMessages.success}
+        data-error-message={toastMessages.error}
       >
         <div class="mb-6">
           <label for="name" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
@@ -136,10 +142,103 @@ const iconComponents = {
           ></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary w-full">
-          {t.contact.form.submit}
+        <button type="submit" id="submit-btn" class="btn btn-primary w-full">
+          <span id="submit-text">{t.contact.form.submit}</span>
+          <span id="submit-loading" class="hidden">{t.contact.form.sending}</span>
         </button>
       </form>
     </div>
   </div>
 </section>
+
+<!-- Toast container -->
+<div id="toast-container" class="toast-container"></div>
+
+<script>
+  import { sendContactForm } from '../services/contact';
+  import type { ContactFormData } from '../services/contact';
+
+  function showToast(message: string, type: 'success' | 'error') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    const icon = type === 'success' ? '✓' : '✕';
+    toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('toast-exit');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 5000);
+  }
+
+  let formInitialized = false;
+
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('submit-text');
+    const submitLoading = document.getElementById('submit-loading');
+
+    if (!form || !submitBtn || !submitText || !submitLoading) return;
+
+    // Prevent multiple bindings
+    if (formInitialized && form.dataset.initialized === 'true') return;
+    form.dataset.initialized = 'true';
+    formInitialized = true;
+
+    const successMessage = form.dataset.successMessage || 'Message sent successfully!';
+    const errorMessage = form.dataset.errorMessage || 'Something went wrong.';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+
+      // Validate form data exists
+      if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
+        showToast(errorMessage, 'error');
+        return;
+      }
+
+      const data: ContactFormData = { name, email, message };
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitText.classList.add('hidden');
+      submitLoading.classList.remove('hidden');
+
+      try {
+        const response = await sendContactForm(data);
+
+        if (response.success) {
+          showToast(successMessage, 'success');
+          form.reset();
+        } else {
+          showToast(errorMessage, 'error');
+        }
+      } catch {
+        showToast(errorMessage, 'error');
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+      }
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initContactForm);
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initContactForm);
+</script>
