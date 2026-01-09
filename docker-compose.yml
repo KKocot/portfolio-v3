@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - PUBLIC_CONTACT_API_URL=${PUBLIC_CONTACT_API_URL}
     image: portfolio:latest
     container_name: portfolio-kkocot
     restart: always

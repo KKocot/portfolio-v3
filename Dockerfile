@@ -3,6 +3,10 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
+# Build argument for API URL
+ARG PUBLIC_CONTACT_API_URL
+ENV PUBLIC_CONTACT_API_URL=${PUBLIC_CONTACT_API_URL}
+
 # Copy package files
 COPY package*.json ./
 
