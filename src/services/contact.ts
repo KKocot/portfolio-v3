@@ -10,7 +10,7 @@ export interface ContactResponse {
 }
 
 const API_BASE = import.meta.env.PUBLIC_API_URL || '/api';
-const API_ENDPOINT = `${API_BASE}/contact/messages`;
+const API_ENDPOINT = `${API_BASE}/contact/messages?db=portfolio`;
 
 export function validateContactForm(data: ContactFormData): string | null {
   if (!data.name || data.name.trim().length === 0) {

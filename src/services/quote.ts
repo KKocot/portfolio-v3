@@ -17,7 +17,7 @@ export interface QuoteResponse {
 }
 
 const API_BASE = import.meta.env.PUBLIC_API_URL || '/api';
-const API_ENDPOINT = `${API_BASE}/contact/quotes`;
+const API_ENDPOINT = `${API_BASE}/contact/quotes?db=portfolio`;
 
 export function validateQuoteForm(data: QuoteFormData): string | null {
   if (!data.name || data.name.trim().length === 0) {
