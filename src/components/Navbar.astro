@@ -13,6 +13,7 @@ const navLinks = [
   { label: t.nav.about, href: '#about' },
   { label: t.nav.skills, href: '#skills' },
   { label: t.nav.projects, href: '#projects' },
+  { label: t.nav.pricing, href: lang === 'pl' ? '/pl/pricing' : '/pricing', isExternal: true },
   { label: t.nav.contact, href: '#contact', isCta: true },
 ];
 ---
@@ -40,6 +41,10 @@ const navLinks = [
                   class="btn btn-primary text-sm px-5 py-2"
                   data-section={link.href.replace('#', '')}
                 >
+                  {link.label}
+                </a>
+              ) : link.isExternal ? (
+                <a href={link.href} class="nav-link">
                   {link.label}
                 </a>
               ) : (

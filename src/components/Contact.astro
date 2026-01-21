@@ -1,13 +1,15 @@
 ---
-import type { Translations } from '../i18n';
+import type { Translations, Language } from '../i18n';
 import IconGithub from './icons/IconGithub.astro';
 import IconLinkedin from './icons/IconLinkedin.astro';
 
 interface Props {
   t: Translations;
+  lang: Language;
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
+const pricingUrl = lang === 'pl' ? '/pl/pricing' : '/pricing';
 
 const contact = {
   email: 'k.kocot@bard-dev.com',
@@ -43,9 +45,13 @@ const toastMessages = {
         <span class="section-tag">{t.contact.tag}</span>
         <h2 class="section-title mb-6 whitespace-pre-line">{t.contact.title}</h2>
 
-        <p class="mb-8" style="color: rgba(250, 250, 250, 0.6);">
+        <p class="mb-6" style="color: rgba(250, 250, 250, 0.6);">
           {t.contact.description}
         </p>
+
+        <a href={pricingUrl} class="btn btn-outline mb-8 inline-flex">
+          {t.contact.pricingCta}
+        </a>
 
         <!-- Contact Details -->
         <div class="space-y-4 mb-8">
