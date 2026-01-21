@@ -1,0 +1,344 @@
+---
+import type { Translations, Language } from '../i18n/translations';
+
+interface Props {
+  t: Translations;
+  lang: Language;
+}
+
+const { t, lang } = Astro.props;
+const q = t.quoteForm;
+
+const projectTypes = Object.entries(q.form.projectTypes) as [string, string][];
+const budgetRanges = Object.entries(q.form.budgetRanges) as [string, string][];
+const timelineOptions = Object.entries(q.form.timelineOptions) as [string, string][];
+const hasDesignOptions = Object.entries(q.form.hasDesignOptions) as [string, string][];
+const featuresList = Object.entries(q.form.featuresList) as [string, string][];
+
+const toastMessages = {
+  success: q.toast.success,
+  error: q.toast.error,
+};
+---
+
+<section id="quote-form" class="py-24 md:py-32">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <span class="section-tag">{q.tag}</span>
+      <h2 class="section-title whitespace-pre-line">{q.title}</h2>
+      <p class="mt-6 text-lg text-text-muted max-w-2xl mx-auto">
+        {q.description}
+      </p>
+    </div>
+
+    <form
+      id="quote-form-element"
+      class="p-8 md:p-10 rounded-2xl"
+      style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+      data-success-message={toastMessages.success}
+      data-error-message={toastMessages.error}
+    >
+      <!-- Row 1: Name & Email -->
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="quote-name" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.name}
+          </label>
+          <input
+            type="text"
+            id="quote-name"
+            name="name"
+            required
+            class="input-field"
+          />
+        </div>
+        <div>
+          <label for="quote-email" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.email}
+          </label>
+          <input
+            type="email"
+            id="quote-email"
+            name="email"
+            required
+            class="input-field"
+          />
+        </div>
+      </div>
+
+      <!-- Row 2: Phone & Company -->
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="quote-phone" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.phone}
+          </label>
+          <input
+            type="tel"
+            id="quote-phone"
+            name="phone"
+            placeholder={q.form.phonePlaceholder}
+            class="input-field"
+          />
+        </div>
+        <div>
+          <label for="quote-company" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.company}
+          </label>
+          <input
+            type="text"
+            id="quote-company"
+            name="company"
+            placeholder={q.form.companyPlaceholder}
+            class="input-field"
+          />
+        </div>
+      </div>
+
+      <!-- Row 3: Project Type & Budget -->
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="quote-project-type" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.projectType}
+          </label>
+          <select
+            id="quote-project-type"
+            name="projectType"
+            required
+            class="input-field"
+          >
+            <option value="">{q.form.projectTypePlaceholder}</option>
+            {projectTypes.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for="quote-budget" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.budget}
+          </label>
+          <select
+            id="quote-budget"
+            name="budget"
+            class="input-field"
+          >
+            <option value="">{q.form.budgetPlaceholder}</option>
+            {budgetRanges.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 4: Timeline & Has Design -->
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="quote-timeline" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.timeline}
+          </label>
+          <select
+            id="quote-timeline"
+            name="timeline"
+            class="input-field"
+          >
+            <option value="">{q.form.timelinePlaceholder}</option>
+            {timelineOptions.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for="quote-has-design" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+            {q.form.hasDesign}
+          </label>
+          <select
+            id="quote-has-design"
+            name="hasDesign"
+            class="input-field"
+          >
+            {hasDesignOptions.map(([value, label]) => (
+              <option value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 5: Features (checkboxes) -->
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-3" style="color: rgba(250, 250, 250, 0.8);">
+          {q.form.features}
+        </label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {featuresList.map(([value, label]) => (
+            <label class="feature-checkbox">
+              <input
+                type="checkbox"
+                name="features"
+                value={value}
+                class="sr-only"
+              />
+              <span class="feature-label">{label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- Row 6: Description -->
+      <div class="mb-8">
+        <label for="quote-description" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+          {q.form.description}
+        </label>
+        <textarea
+          id="quote-description"
+          name="description"
+          rows="5"
+          required
+          placeholder={q.form.descriptionPlaceholder}
+          class="input-field resize-y min-h-[120px]"
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="quote-submit-btn" class="btn btn-primary w-full">
+        <span id="quote-submit-text">{q.form.submit}</span>
+        <span id="quote-submit-loading" class="hidden">{q.form.sending}</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Toast container -->
+<div id="quote-toast-container" class="toast-container"></div>
+
+<style>
+  .feature-checkbox {
+    cursor: pointer;
+  }
+
+  .feature-checkbox input:checked + .feature-label {
+    background-color: rgba(255, 136, 51, 0.2);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .feature-label {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    background-color: rgba(250, 250, 250, 0.03);
+    border: 1px solid rgba(250, 250, 250, 0.1);
+    color: rgba(250, 250, 250, 0.7);
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .feature-label:hover {
+    border-color: rgba(255, 136, 51, 0.5);
+    background-color: rgba(255, 136, 51, 0.1);
+  }
+
+  .text-text-muted {
+    color: rgba(250, 250, 250, 0.5);
+  }
+
+  select.input-field {
+    cursor: pointer;
+  }
+
+  select.input-field option {
+    background-color: #1a1a1a;
+    color: rgba(250, 250, 250, 0.9);
+  }
+</style>
+
+<script>
+  import { sendQuoteForm } from '../services/quote';
+  import type { QuoteFormData } from '../services/quote';
+
+  function showToast(message: string, type: 'success' | 'error') {
+    const container = document.getElementById('quote-toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    const icon = type === 'success' ? '✓' : '✕';
+    toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('toast-exit');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 5000);
+  }
+
+  let formInitialized = false;
+
+  function initQuoteForm() {
+    const form = document.getElementById('quote-form-element') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('quote-submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('quote-submit-text');
+    const submitLoading = document.getElementById('quote-submit-loading');
+
+    if (!form || !submitBtn || !submitText || !submitLoading) return;
+
+    if (formInitialized && form.dataset.initialized === 'true') return;
+    form.dataset.initialized = 'true';
+    formInitialized = true;
+
+    const successMessage = form.dataset.successMessage || 'Request sent successfully!';
+    const errorMessage = form.dataset.errorMessage || 'Something went wrong.';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const features = formData.getAll('features') as string[];
+
+      const data: QuoteFormData = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string || undefined,
+        company: formData.get('company') as string || undefined,
+        projectType: formData.get('projectType') as string,
+        budget: formData.get('budget') as string || undefined,
+        timeline: formData.get('timeline') as string || undefined,
+        hasDesign: formData.get('hasDesign') as string || undefined,
+        features: features.length > 0 ? features : undefined,
+        description: formData.get('description') as string,
+      };
+
+      submitBtn.disabled = true;
+      submitText.classList.add('hidden');
+      submitLoading.classList.remove('hidden');
+
+      try {
+        const response = await sendQuoteForm(data);
+
+        if (response.success) {
+          showToast(successMessage, 'success');
+          form.reset();
+          // Reset checkbox visual states
+          form.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
+            (cb as HTMLInputElement).checked = false;
+          });
+        } else {
+          showToast(errorMessage, 'error');
+        }
+      } catch {
+        showToast(errorMessage, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        submitLoading.classList.add('hidden');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initQuoteForm);
+  document.addEventListener('astro:page-load', initQuoteForm);
+</script>
