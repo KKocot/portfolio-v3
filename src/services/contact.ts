@@ -9,7 +9,8 @@ export interface ContactResponse {
   error?: string;
 }
 
-const API_ENDPOINT = import.meta.env.PUBLIC_CONTACT_API_URL || '/api/contact';
+const API_BASE = import.meta.env.PUBLIC_API_URL || '/api';
+const API_ENDPOINT = `${API_BASE}/contact/messages`;
 
 export function validateContactForm(data: ContactFormData): string | null {
   if (!data.name || data.name.trim().length === 0) {
