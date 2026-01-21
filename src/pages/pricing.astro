@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PricingForm from '../components/PricingForm.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations } from '../i18n';
+
+const lang = 'en';
+const t = getTranslations(lang);
+---
+
+<Layout
+  title="Pricing | Krzysztof Kocot"
+  description="Transparent pricing for web and mobile development projects. Landing pages, business websites, e-commerce, web apps, and mobile applications."
+  lang={lang}
+>
+  <Navbar lang={lang} t={t} />
+  <main class="pt-20">
+    <PricingForm t={t} lang={lang} />
+    <QuoteForm t={t} lang={lang} />
+  </main>
+  <Footer t={t} />
+</Layout>
