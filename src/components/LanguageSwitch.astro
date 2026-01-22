@@ -36,15 +36,20 @@ const { currentLang } = Astro.props;
     return 'en';
   }
 
-  // Set language
+  // Set language and navigate to appropriate localized route
   function setLang(lang: 'en' | 'pl') {
     localStorage.setItem('lang', lang);
-    const currentPath = window.location.pathname;
+    const current_path = window.location.pathname;
 
-    if (lang === 'pl' && !currentPath.startsWith('/pl')) {
-      window.location.href = '/pl' + currentPath;
-    } else if (lang === 'en' && currentPath.startsWith('/pl')) {
-      window.location.href = currentPath.replace('/pl', '') || '/';
+    if (lang === 'pl' && !current_path.startsWith('/pl')) {
+      // Switch to Polish: add /pl prefix
+      // Handle root path separately to avoid double slashes
+      const new_path = current_path === '/' ? '/pl' : '/pl' + current_path;
+      window.location.href = new_path;
+    } else if (lang === 'en' && current_path.startsWith('/pl')) {
+      // Switch to English: remove /pl prefix
+      const new_path = current_path.replace(/^\/pl/, '') || '/';
+      window.location.href = new_path;
     }
   }
 
