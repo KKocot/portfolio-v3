@@ -35,9 +35,15 @@ This is a portfolio website built with **Astro 5** and **Tailwind CSS 4**, using
 
 **Contact Form:**
 - Service in `src/services/contact.ts` handles form submission
-- Uses environment variable `PUBLIC_CONTACT_API_URL` for API endpoint
+- Uses environment variable `PUBLIC_API_URL` for API endpoint
 - Includes client-side validation (name, email format, message)
 - Toast notifications for success/error states
+
+**Routing:**
+- English route: `/`
+- Polish route: `/pl`
+- All sections (Hero, About, Skills, Projects, Pricing, Contact) are on single-page with anchor navigation
+- Icons via `astro-icon` with `@iconify-json/logos` and `@iconify-json/simple-icons`
 
 ### TypeScript
 
