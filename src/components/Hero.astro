@@ -1,14 +1,12 @@
 ---
-import type { Translations, Language } from '../i18n';
+import type { Translations } from '../i18n';
 
 interface Props {
   t: Translations;
   name: string;
-  lang: Language;
 }
 
-const { t, name, lang } = Astro.props;
-const pricingUrl = lang === 'pl' ? '/pl/pricing' : '/pricing';
+const { t, name } = Astro.props;
 ---
 
 <section id="hero" class="min-h-screen flex items-center pt-[72px] relative">
@@ -54,7 +52,7 @@ const pricingUrl = lang === 'pl' ? '/pl/pricing' : '/pricing';
           <a href="#contact" class="btn btn-primary">
             {t.hero.cta.contact}
           </a>
-          <a href={pricingUrl} class="btn btn-secondary">
+          <a href="#pricing" class="btn btn-secondary">
             {t.hero.cta.pricing}
           </a>
           <a href="#projects" class="btn btn-outline">

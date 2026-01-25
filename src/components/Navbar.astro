@@ -9,21 +9,12 @@ interface Props {
 
 const { lang, t } = Astro.props;
 
-// Get current page path to determine if we're on a subpage
-const current_path = Astro.url.pathname;
-const is_home_page = current_path === '/' || current_path === '/pl' || current_path === '/pl/';
-const is_pricing_page = current_path.includes('/pricing');
-
-// Base path for anchor links - redirect to home if on subpage
-const home_base = lang === 'pl' ? '/pl' : '/';
-const anchor_prefix = is_home_page ? '' : home_base;
-
 const navLinks = [
-  { label: t.nav.about, href: `${anchor_prefix}#about` },
-  { label: t.nav.skills, href: `${anchor_prefix}#skills` },
-  { label: t.nav.projects, href: `${anchor_prefix}#projects` },
-  { label: t.nav.pricing, href: lang === 'pl' ? '/pl/pricing' : '/pricing', isExternal: true, isActive: is_pricing_page },
-  { label: t.nav.contact, href: `${anchor_prefix}#contact`, isCta: true },
+  { label: t.nav.about, href: '#about' },
+  { label: t.nav.skills, href: '#skills' },
+  { label: t.nav.projects, href: '#projects' },
+  { label: t.nav.pricing, href: '#pricing' },
+  { label: t.nav.contact, href: '#contact', isCta: true },
 ];
 ---
 
@@ -50,10 +41,6 @@ const navLinks = [
                   class="btn btn-primary text-sm px-5 py-2"
                   data-section={link.href.replace('#', '')}
                 >
-                  {link.label}
-                </a>
-              ) : link.isExternal ? (
-                <a href={link.href} class={`nav-link ${link.isActive ? 'active' : ''}`}>
                   {link.label}
                 </a>
               ) : (
@@ -88,8 +75,8 @@ const navLinks = [
           <a
             href={link.href}
             class="mobile-nav-link block py-2 text-sm font-medium transition-colors"
-            data-section={link.isExternal ? undefined : link.href.replace('#', '')}
-            style={`color: ${link.isActive ? 'var(--color-primary)' : 'rgba(250, 250, 250, 0.6)'};`}
+            data-section={link.href.replace('#', '')}
+            style="color: rgba(250, 250, 250, 0.6);"
           >
             {link.label}
           </a>
