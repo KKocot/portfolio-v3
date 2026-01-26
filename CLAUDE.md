@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Location in Projects
+
+```
+projects/websites/portfolio-kkocot/   <-- JESTEŚ TUTAJ
+```
+
+**Inne strony w folderze websites/:**
+- `../bard-dev-card/` - dokumentacja / wizytówka dev (Astro Starlight)
+
 ## Build & Development Commands
 
 ```bash
