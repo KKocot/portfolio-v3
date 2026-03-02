@@ -39,7 +39,7 @@ This is a portfolio website built with **Astro 5** and **Tailwind CSS 4**, using
 **Styling:**
 - Tailwind CSS 4 with Vite plugin (`@tailwindcss/vite`)
 - Custom utilities and theme variables in `src/styles/global.css`
-- Dark theme with orange accent (`#ff8833`)
+- Dark theme with cyan accent (`#06b6d4`)
 - Component classes: `.btn-primary`, `.skill-card`, `.project-card`, etc.
 
 **Contact Form:**
