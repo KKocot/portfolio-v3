@@ -55,7 +55,7 @@ export interface Translations {
       excelReader: string;
       stasiakOpal: string;
       flashcards: string;
-      portfolio: string;
+      projectHub: string;
     };
   };
   contact: {
@@ -261,13 +261,13 @@ export const translations: Record<Language, Translations> = {
         shoppingList:
           "Mobile app for managing shopping lists built with React Native and Expo.",
         excelReader:
-          "Web tool for uploading and analyzing CSV files. Data visualization with interactive charts.",
+          "Web tool for uploading and analyzing Excel files. Data visualization with interactive charts.",
         stasiakOpal:
-          "Landing page for local coal business. Built with Astro, optimized for performance and SEO.",
+          "Landing page for local coal business. Built with React 19 and TanStack Router, optimized for performance and SEO.",
         flashcards:
-          "Educational app for learning with flashcards. Spaced repetition method, progress tracking.",
-        portfolio:
-          "Personal portfolio built with Astro and Tailwind CSS. Static site with i18n support and contact form.",
+          "Educational app for learning with flashcards. AI-powered card generation, spaced repetition, and progress tracking.",
+        projectHub:
+          "Project management app with drag & drop boards, task tracking, and data visualization with charts.",
       },
     },
     contact: {
@@ -477,13 +477,13 @@ export const translations: Record<Language, Translations> = {
         shoppingList:
           "Aplikacja mobilna do zarządzania listami zakupów zbudowana z React Native i Expo.",
         excelReader:
-          "Narzędzie webowe do wgrywania i analizy plików CSV. Wizualizacja danych z interaktywnymi wykresami.",
+          "Narzędzie webowe do wgrywania i analizy plików Excel. Wizualizacja danych na interaktywnych wykresach.",
         stasiakOpal:
-          "Strona landingowa dla lokalnego biznesu węglowego. Zbudowana w Astro, zoptymalizowana pod wydajność i SEO.",
+          "Strona internetowa lokalnej firmy węglowej. Zbudowana w React 19 z TanStack Router, zoptymalizowana pod wydajność i SEO.",
         flashcards:
-          "Aplikacja edukacyjna do nauki z fiszkami. Metoda powtórek rozłożonych w czasie, śledzenie postępów.",
-        portfolio:
-          "Portfolio osobiste zbudowane w Astro i Tailwind CSS. Statyczna strona z obsługą i18n i formularzem kontaktowym.",
+          "Aplikacja edukacyjna do nauki z fiszkami. Generowanie kart przez AI, powtórki z odstępami i śledzenie postępu.",
+        projectHub:
+          "Aplikacja do zarządzania projektami z tablicami drag & drop, śledzeniem zadań i wizualizacją danych na wykresach.",
       },
     },
     contact: {

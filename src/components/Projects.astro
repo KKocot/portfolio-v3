@@ -58,18 +58,14 @@ const otherProjects: Project[] = [
     description: t.projects.descriptions.elysiaBackend,
     tags: ['Bun', 'Elysia', 'MongoDB', 'Zod'],
     type: 'Backend',
-    links: [
-      { label: 'API', url: 'https://api.bard-dev.com', primary: true },
-    ],
+    links: [],
   },
   {
     title: 'Shopping List',
     description: t.projects.descriptions.shoppingList,
     tags: ['React Native', 'Expo', 'TypeScript'],
     type: 'Mobile',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/KKocot/shopping-list' },
-    ],
+    links: [],
   },
   {
     title: 'Excel Reader',
@@ -77,14 +73,13 @@ const otherProjects: Project[] = [
     tags: ['React', 'TypeScript', 'Recharts'],
     type: 'Tool',
     links: [
-      { label: 'GitHub', url: 'https://github.com/KKocot/excel-reader' },
       { label: 'Live', url: 'https://excel-reader.bard-dev.com', primary: true },
     ],
   },
   {
     title: 'Stasiak Opał',
     description: t.projects.descriptions.stasiakOpal,
-    tags: ['Astro', 'Tailwind', 'SEO'],
+    tags: ['React 19', 'TanStack Router', 'Tailwind'],
     type: 'Client',
     links: [
       { label: 'Live', url: 'https://stasiak-opal.pl', primary: true },
@@ -93,21 +88,19 @@ const otherProjects: Project[] = [
   {
     title: 'Flashcards',
     description: t.projects.descriptions.flashcards,
-    tags: ['React', 'TypeScript', 'LocalStorage'],
+    tags: ['React 19', 'TanStack Query', 'Google OAuth'],
     type: 'Education',
     links: [
-      { label: 'GitHub', url: 'https://github.com/KKocot/flashcards' },
       { label: 'Live', url: 'https://flashcards.bard-dev.com', primary: true },
     ],
   },
   {
-    title: 'Portfolio',
-    description: t.projects.descriptions.portfolio,
-    tags: ['Astro', 'Tailwind', 'TypeScript'],
-    type: 'Personal',
+    title: 'ProjectHub',
+    description: t.projects.descriptions.projectHub,
+    tags: ['React 19', 'DnD Kit', 'Zustand', 'Recharts'],
+    type: 'Full-Stack App',
     links: [
-      { label: 'GitHub', url: 'https://github.com/KKocot/portfolio-v3' },
-      { label: 'Live', url: 'https://portfolio.bard-dev.com', primary: true },
+      { label: 'Live', url: 'https://projecthub.bard-dev.com', primary: true },
     ],
   },
 ];
@@ -117,10 +110,9 @@ const typeColors: Record<string, string> = {
   'Full-Stack App': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
   'Backend': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
   'Mobile': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
-  'Tool': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+  'Tool': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
   'Client': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
   'Education': 'bg-amber-500/20 text-amber-400 border-amber-500/30',
-  'Personal': 'bg-rose-500/20 text-rose-400 border-rose-500/30',
 };
 ---
 
@@ -174,7 +166,7 @@ const typeColors: Record<string, string> = {
                 rel="noopener noreferrer"
                 class={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
                   link.primary
-                    ? 'border-white/30 text-white hover:border-[#ff8833] hover:text-[#ff8833]'
+                    ? 'border-white/30 text-white hover:border-[#10b981] hover:text-[#10b981]'
                     : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white/80'
                 }`}
               >
@@ -229,7 +221,7 @@ const typeColors: Record<string, string> = {
                 rel="noopener noreferrer"
                 class={`inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
                   link.primary
-                    ? 'border-white/30 text-white hover:border-[#ff8833] hover:text-[#ff8833]'
+                    ? 'border-white/30 text-white hover:border-[#10b981] hover:text-[#10b981]'
                     : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white/80'
                 }`}
               >
@@ -245,7 +237,7 @@ const typeColors: Record<string, string> = {
     <!-- CTA -->
     <div class="text-center mt-12">
       <a
-        href="https://bard-dev.com"
+        href="https://github.com/KKocot"
         target="_blank"
         rel="noopener noreferrer"
         class="btn btn-outline"
