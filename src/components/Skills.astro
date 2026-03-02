@@ -55,6 +55,16 @@ const skillCategories = [
       { icon: 'simple-icons:linux', name: 'Linux' },
     ],
   },
+  {
+    title: t.skills.categories.ai,
+    color: 'rose',
+    skills: [
+      { icon: "simple-icons:claude", name: "Claude" },
+      { icon: "claude-code", name: "Claude Code" },
+      { icon: "simple-icons:probot", name: "AI Agents" },
+      { icon: "simple-icons:googlegemini", name: "Gemini" },
+    ],
+  },
 ];
 
 const colorClasses: Record<string, { dot: string; icon: string; iconHover: string }> = {
@@ -78,6 +88,11 @@ const colorClasses: Record<string, { dot: string; icon: string; iconHover: strin
     icon: 'text-orange-400/60',
     iconHover: 'group-hover/skill:text-orange-400',
   },
+  rose: {
+    dot: 'bg-rose-500',
+    icon: 'text-rose-400/60',
+    iconHover: 'group-hover/skill:text-rose-400',
+  },
 };
 ---
 
@@ -90,12 +105,12 @@ const colorClasses: Record<string, { dot: string; icon: string; iconHover: strin
     </div>
 
     <!-- Main Skills Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="flex flex-wrap justify-center gap-6">
       {skillCategories.map((category, index) => {
         const colors = colorClasses[category.color];
         return (
           <div
-            class="skill-card animate-on-scroll group"
+            class="skill-card animate-on-scroll group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             style={`transition-delay: ${index * 100}ms`}
           >
             <!-- Category Header -->
