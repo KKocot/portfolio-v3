@@ -39,6 +39,7 @@ export interface Translations {
       backend: string;
       mobile: string;
       devops: string;
+      ai: string;
     };
   };
   projects: {
@@ -242,6 +243,7 @@ export const translations: Record<Language, Translations> = {
         backend: "Backend",
         mobile: "Mobile & Testing",
         devops: "DevOps & Tools",
+        ai: "AI Tools",
       },
     },
     projects: {
@@ -457,6 +459,7 @@ export const translations: Record<Language, Translations> = {
         backend: "Backend",
         mobile: "Mobile & Testing",
         devops: "DevOps & Tools",
+        ai: "Narzędzia AI",
       },
     },
     projects: {
