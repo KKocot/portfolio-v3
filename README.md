@@ -1,77 +1,23 @@
-# Krzysztof Kocot - Portfolio
+# Krzysztof Kocot
 
-Personal portfolio website built with Astro, TypeScript and Tailwind CSS.
+**Full-Stack Developer & Freelancer** based in Katowice, Poland.
 
-**Live:** [bard-dev.com](https://bard-dev.com)
+I build modern web and mobile applications with clean code and great UX. Available for freelance work worldwide.
 
-## Tech Stack
+**[portfolio.bard-dev.com](https://portfolio.bard-dev.com)**
 
-- **Framework:** [Astro 5](https://astro.build/)
-- **Language:** TypeScript
-- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
-- **Fonts:** Inter (Google Fonts)
+## What I do
 
-## Features
+- Web applications (React, Next.js, Astro, Solid.js)
+- Mobile apps (React Native, Expo)
+- Backend & API (Elysia/Bun, Express, MongoDB)
+- DevOps (Docker, Traefik, VPS)
 
-- Dark theme with orange accent (Berrie-inspired)
-- Multi-language support (English / Polish)
-- Fully responsive design
-- Scroll animations
-- Static site generation (SSG)
-- SEO optimized
+## Get in touch
 
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── icons/
-│   ├── About.astro
-│   ├── Contact.astro
-│   ├── Footer.astro
-│   ├── Hero.astro
-│   ├── LanguageSwitch.astro
-│   ├── Navbar.astro
-│   ├── Projects.astro
-│   └── Skills.astro
-├── i18n/
-│   ├── index.ts
-│   └── translations.ts
-├── layouts/
-│   └── Layout.astro
-├── pages/
-│   ├── index.astro (EN)
-│   └── pl/index.astro (PL)
-└── styles/
-    └── global.css
-```
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## Deployment
-
-This site is optimized for deployment on [Vercel](https://vercel.com/). Simply connect the repository and deploy.
-
-## Author
-
-**Krzysztof Kocot**
+- Email: k.kocot@bard-dev.com
 - GitHub: [@KKocot](https://github.com/KKocot)
 - LinkedIn: [Krzysztof Kocot](https://www.linkedin.com/in/krzysztof-kocot-b3043a220/)
-- Email: k.kocot@bard-dev.com
 
 ## License
 
