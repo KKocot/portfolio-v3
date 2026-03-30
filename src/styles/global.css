@@ -148,6 +148,14 @@
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
   }
 
+  select.input-field {
+    padding-right: 2.5rem;
+  }
+
+  select.input-field option {
+    padding: 0.5rem 1rem;
+  }
+
   .lang-switch {
     @apply flex items-center gap-1 rounded-full p-1;
     background-color: rgba(250, 250, 250, 0.05);
