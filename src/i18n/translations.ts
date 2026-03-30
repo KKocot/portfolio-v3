@@ -52,10 +52,10 @@ export interface Translations {
       conqsite: string;
       elysiaBackend: string;
       shoppingList: string;
-      excelReader: string;
       stasiakOpal: string;
       flashcards: string;
       projectHub: string;
+      barddevUi: string;
     };
   };
   contact: {
@@ -213,7 +213,7 @@ export const translations: Record<Language, Translations> = {
       role: "Full-Stack Developer & Freelancer",
       tagline: "Hi, I'm",
       description:
-        "I build modern web and mobile applications with a passion for clean code and excellent UX. Working remotely from Katowice, delivering solutions for clients worldwide.",
+        "I build modern web and mobile applications using AI-powered development workflow. Clean code, excellent UX, faster delivery. Working remotely from Katowice, delivering solutions for clients worldwide.",
       cta: {
         projects: "View projects",
         contact: "Let's talk",
@@ -224,14 +224,14 @@ export const translations: Record<Language, Translations> = {
     about: {
       tag: "About me",
       title: "Passion for creating\ndigital solutions",
-      lead: "I'm a Full-Stack Developer with over 3 years of commercial experience. I specialize in building scalable web and mobile applications.",
+      lead: "I'm a Full-Stack Developer with over 3 years of commercial experience. I independently design and build complete web and mobile applications — from database to UI.",
       text: [
-        "I work as a freelancer, which allows me to take a flexible approach to each project and collaborate directly with clients. My goal is to deliver solutions that not only work but also delight users.",
+        "With AI-powered systems I've built into my workflow, I deliver projects faster and at a higher quality than traditional development allows. Claude, Gemini, and custom automation handle the repetitive work — I focus on architecture, business logic, and the details that make software feel great.",
       ],
       stats: {
         experience: "Years of experience",
         projects: "Completed projects",
-        commits: "GitHub commits",
+        commits: "Git commits",
       },
       cta: "See pricing",
     },
@@ -259,15 +259,15 @@ export const translations: Record<Language, Translations> = {
         elysiaBackend:
           "REST API built with Bun and Elysia framework. Serves multiple frontend projects with shared database.",
         shoppingList:
-          "Mobile app for managing shopping lists built with React Native and Expo.",
-        excelReader:
-          "Web tool for uploading and analyzing Excel files. Data visualization with interactive charts.",
+          "Cross-platform shopping list app with mobile (Expo) and web (Svelte 5) clients sharing a real-time backend.",
         stasiakOpal:
           "Landing page for local coal business. Built with React 19 and TanStack Router, optimized for performance and SEO.",
         flashcards:
           "Educational app for learning with flashcards. AI-powered card generation, spaced repetition, and progress tracking.",
         projectHub:
           "Project management app with drag & drop boards, task tracking, and data visualization with charts.",
+        barddevUi:
+          "Multi-framework UI component library supporting React, Solid.js, and Vue.",
       },
     },
     contact: {
@@ -307,8 +307,8 @@ export const translations: Record<Language, Translations> = {
           name: "Landing Page",
           description:
             "One-page website, perfect for product presentation or marketing campaign",
-          projectMin: 1200,
-          projectMax: 3000,
+          projectMin: 800,
+          projectMax: 2500,
           adminMin: 500,
           adminMax: 1000,
         },
@@ -316,8 +316,8 @@ export const translations: Record<Language, Translations> = {
           name: "Business Website",
           description:
             "Multi-page website with CMS, contact form, and SEO optimization",
-          projectMin: 3000,
-          projectMax: 8000,
+          projectMin: 2500,
+          projectMax: 7000,
           adminMin: 1000,
           adminMax: 2500,
         },
@@ -325,8 +325,8 @@ export const translations: Record<Language, Translations> = {
           name: "E-commerce Store",
           description:
             "Online store with payment integration, inventory management, and analytics",
-          projectMin: 7000,
-          projectMax: 20000,
+          projectMin: 6000,
+          projectMax: 18000,
           adminMin: 2000,
           adminMax: 5000,
         },
@@ -334,7 +334,7 @@ export const translations: Record<Language, Translations> = {
           name: "Web Application",
           description:
             "Custom web app with user authentication, database, and API integrations",
-          projectMin: 10000,
+          projectMin: 8000,
           projectMax: 35000,
           adminMin: 3000,
           adminMax: 8000,
@@ -342,7 +342,7 @@ export const translations: Record<Language, Translations> = {
         mobile: {
           name: "Mobile App",
           description: "Cross-platform mobile application for iOS and Android",
-          projectMin: 12000,
+          projectMin: 10000,
           projectMax: 45000,
           adminMin: 4000,
           adminMax: 10000,
@@ -429,7 +429,7 @@ export const translations: Record<Language, Translations> = {
       role: "Full-Stack Developer & Freelancer",
       tagline: "Cześć, jestem",
       description:
-        "Tworzę nowoczesne aplikacje webowe i mobilne z pasją do czystego kodu i doskonałego UX. Pracuję zdalnie z Katowic, dostarczając rozwiązania dla klientów na całym świecie.",
+        "Tworzę nowoczesne aplikacje webowe i mobilne wykorzystując AI w procesie developmentu. Czysty kod, doskonały UX, szybsza realizacja. Pracuję zdalnie z Katowic, dostarczając rozwiązania dla klientów na całym świecie.",
       cta: {
         projects: "Zobacz projekty",
         contact: "Porozmawiajmy",
@@ -440,14 +440,14 @@ export const translations: Record<Language, Translations> = {
     about: {
       tag: "O mnie",
       title: "Pasja do tworzenia\ncyfrowych rozwiązań",
-      lead: "Jestem Full-Stack Developerem z ponad 3-letnim doświadczeniem komercyjnym. Specjalizuję się w budowaniu skalowalnych aplikacji webowych i mobilnych.",
+      lead: "Jestem Full-Stack Developerem z ponad 3-letnim doświadczeniem komercyjnym. Samodzielnie projektuję i buduję kompletne aplikacje webowe i mobilne — od bazy danych po UI.",
       text: [
-        "Pracuję jako freelancer, co pozwala mi na elastyczne podejście do każdego projektu i bezpośrednią współpracę z klientami. Moim celem jest dostarczanie rozwiązań, które nie tylko działają, ale też zachwycają użytkowników.",
+        "Dzięki systemom AI, które wbudowałem w swój workflow, dostarczam projekty szybciej i na wyższym poziomie niż pozwala tradycyjny development. Claude, Gemini i własne automatyzacje zajmują się powtarzalną pracą — ja skupiam się na architekturze, logice biznesowej i detalach, które sprawiają, że oprogramowanie robi wrażenie.",
       ],
       stats: {
         experience: "Lata doświadczenia",
         projects: "Ukończonych projektów",
-        commits: "Commitów na GitHub",
+        commits: "Commitów Git",
       },
       cta: "Zobacz cennik",
     },
@@ -475,15 +475,15 @@ export const translations: Record<Language, Translations> = {
         elysiaBackend:
           "REST API zbudowane z Bun i frameworkiem Elysia. Obsługuje wiele projektów frontendowych ze wspólną bazą danych.",
         shoppingList:
-          "Aplikacja mobilna do zarządzania listami zakupów zbudowana z React Native i Expo.",
-        excelReader:
-          "Narzędzie webowe do wgrywania i analizy plików Excel. Wizualizacja danych na interaktywnych wykresach.",
+          "Wieloplatformowa aplikacja do list zakupów z klientem mobilnym (Expo) i webowym (Svelte 5) ze wspólnym backendem w czasie rzeczywistym.",
         stasiakOpal:
           "Strona internetowa lokalnej firmy węglowej. Zbudowana w React 19 z TanStack Router, zoptymalizowana pod wydajność i SEO.",
         flashcards:
           "Aplikacja edukacyjna do nauki z fiszkami. Generowanie kart przez AI, powtórki z odstępami i śledzenie postępu.",
         projectHub:
           "Aplikacja do zarządzania projektami z tablicami drag & drop, śledzeniem zadań i wizualizacją danych na wykresach.",
+        barddevUi:
+          "Wieloframeworkowa biblioteka komponentów UI wspierająca React, Solid.js i Vue.",
       },
     },
     contact: {
@@ -523,8 +523,8 @@ export const translations: Record<Language, Translations> = {
           name: "Landing Page",
           description:
             "Strona jednostronicowa, idealna do prezentacji produktu lub kampanii marketingowej",
-          projectMin: 1200,
-          projectMax: 3000,
+          projectMin: 800,
+          projectMax: 2500,
           adminMin: 500,
           adminMax: 1000,
         },
@@ -532,8 +532,8 @@ export const translations: Record<Language, Translations> = {
           name: "Strona firmowa",
           description:
             "Wielostronicowa strona z CMS, formularzem kontaktowym i optymalizacją SEO",
-          projectMin: 3000,
-          projectMax: 8000,
+          projectMin: 2500,
+          projectMax: 7000,
           adminMin: 1000,
           adminMax: 2500,
         },
@@ -541,8 +541,8 @@ export const translations: Record<Language, Translations> = {
           name: "Sklep internetowy",
           description:
             "Sklep online z integracją płatności, zarządzaniem magazynem i analityką",
-          projectMin: 7000,
-          projectMax: 20000,
+          projectMin: 6000,
+          projectMax: 18000,
           adminMin: 2000,
           adminMax: 5000,
         },
@@ -550,7 +550,7 @@ export const translations: Record<Language, Translations> = {
           name: "Aplikacja webowa",
           description:
             "Aplikacja z autoryzacją użytkowników, bazą danych i integracjami API",
-          projectMin: 10000,
+          projectMin: 8000,
           projectMax: 35000,
           adminMin: 3000,
           adminMax: 8000,
@@ -558,7 +558,7 @@ export const translations: Record<Language, Translations> = {
         mobile: {
           name: "Aplikacja mobilna",
           description: "Wieloplatformowa aplikacja mobilna na iOS i Android",
-          projectMin: 12000,
+          projectMin: 10000,
           projectMax: 45000,
           adminMin: 4000,
           adminMax: 10000,
