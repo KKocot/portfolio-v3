@@ -1,59 +1,37 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Location in Projects
+## Lokalizacja
 
 ```
-projects/websites/portfolio-kkocot/   <-- JESTEŚ TUTAJ
+projects/websites/portfolio-kkocot/   <-- JESTES TUTAJ
 ```
 
-**Inne strony w folderze websites/:**
-- `../bard-dev-card/` - dokumentacja / wizytówka dev (Astro Starlight)
+## Knowledge Base API
 
-## Build & Development Commands
+Centralna baza wiedzy: claude.bard-dev.com
 
 ```bash
-npm run dev      # Start Astro dev server with hot reload
-npm run build    # Build for production (outputs to /dist)
-npm run preview  # Preview production build locally
+# Kontekst tego projektu
+curl -s "https://claude.bard-dev.com/projects?search=portfolio-kkocot"
+
+# Stack technologiczny
+curl -s "https://claude.bard-dev.com/tech-stack?limit=100"
+
+# Wzorce i konwencje
+curl -s "https://claude.bard-dev.com/patterns?category=conventions"
+
+# Decyzje architektoniczne
+curl -s "https://claude.bard-dev.com/decisions"
+
+# Kontekst agenta
+curl -s "https://claude.bard-dev.com/agent-contexts/by-name/AGENT_NAME/relevant-patterns"
 ```
 
-## Architecture Overview
+## Komendy
 
-This is a portfolio website built with **Astro 5** and **Tailwind CSS 4**, using static site generation (SSG).
-
-### Key Patterns
-
-**Internationalization (i18n):**
-- Two languages: English (`/`) and Polish (`/pl`)
-- Translations defined in `src/i18n/translations.ts` with typed `Translations` interface
-- All components receive translations via `t: Translations` prop
-- Language switching via `src/components/LanguageSwitch.astro`
-
-**Component Structure:**
-- Astro components are server-rendered with no client hydration
-- Interactive features use vanilla JavaScript in `src/layouts/Layout.astro`
-- Components: `Hero`, `About`, `Skills`, `Projects`, `Contact`, `Navbar`, `Footer`
-
-**Styling:**
-- Tailwind CSS 4 with Vite plugin (`@tailwindcss/vite`)
-- Custom utilities and theme variables in `src/styles/global.css`
-- Dark theme with cyan accent (`#06b6d4`)
-- Component classes: `.btn-primary`, `.skill-card`, `.project-card`, etc.
-
-**Contact Form:**
-- Service in `src/services/contact.ts` handles form submission
-- Uses environment variable `PUBLIC_API_URL` for API endpoint
-- Includes client-side validation (name, email format, message)
-- Toast notifications for success/error states
-
-**Routing:**
-- English route: `/`
-- Polish route: `/pl`
-- All sections (Hero, About, Skills, Projects, Pricing, Contact) are on single-page with anchor navigation
-- Icons via `astro-icon` with `@iconify-json/logos` and `@iconify-json/simple-icons`
-
-### TypeScript
-
-Uses strict Astro TypeScript config (`astro/tsconfigs/strict`).
+```bash
+npm install
+npm run dev          # astro dev
+npm run build        # astro build
+npm run preview      # astro preview
+```
