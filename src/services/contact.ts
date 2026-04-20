@@ -54,7 +54,6 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
 
     return { success: true };
   } catch (error) {
-    console.error('Contact form error:', error);
     return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
   }
 }

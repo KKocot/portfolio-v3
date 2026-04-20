@@ -6,13 +6,20 @@ interface Props {
   title: string;
   description?: string;
   lang?: Language;
+  pathname?: string;
 }
 
 const {
   title,
   description = 'Full-Stack Developer & Freelancer from Katowice. I specialize in Next.js, React, TypeScript and Node.js.',
-  lang = 'en'
+  lang = 'en',
+  pathname,
 } = Astro.props;
+
+const siteUrl = 'https://kkocot.dev';
+const resolvedPathname = pathname ?? Astro.url.pathname;
+const canonicalUrl = new URL(resolvedPathname, siteUrl).href;
+const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
 ---
 
 <!doctype html>
@@ -22,14 +29,30 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Krzysztof Kocot" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0A0A0A" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="pl" href={`${siteUrl}/pl/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={ogLocale} />
+
     <title>{title}</title>
   </head>
-  <body class="min-h-screen" style="background: #000;">
+  <body class="min-h-screen" style={`background: var(--color-bg);`}>
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main" class="skip-link">
+      {lang === 'pl' ? 'Przejdź do treści' : 'Skip to content'}
+    </a>
     <slot />
     <script>
       // Mobile menu toggle
@@ -38,7 +61,9 @@ const {
       const menuLines = menuBtn?.querySelectorAll('.menu-line');
 
       function toggleMenu(open: boolean) {
-        if (!navLinks || !menuLines) return;
+        if (!navLinks || !menuLines || !menuBtn) return;
+
+        menuBtn.setAttribute('aria-expanded', String(open));
 
         if (open) {
           navLinks.classList.remove('hidden');
@@ -60,6 +85,14 @@ const {
         toggleMenu(!isOpen);
       });
 
+      // Close mobile menu on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !navLinks?.classList.contains('hidden')) {
+          toggleMenu(false);
+          (menuBtn as HTMLElement)?.focus();
+        }
+      });
+
       // Close mobile menu on link click
       navLinks?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
@@ -67,20 +100,29 @@ const {
         });
       });
 
-      // Scroll animations
-      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      // Scroll animations — inline styles instead of Tailwind classes
+      // (Tailwind 4 does not compile classes added dynamically via classList)
+      const observerOptions = { root: null, rootMargin: '0px 0px -80px 0px', threshold: 0.01 };
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
-            observer.unobserve(entry.target);
+            const target = entry.target as HTMLElement;
+            // Stagger support
+            if (target.dataset.staggerIndex) {
+              const delay = parseInt(target.dataset.staggerIndex) * 80;
+              target.style.transitionDelay = `${delay}ms`;
+            }
+            target.style.opacity = '1';
+            target.style.transform = 'translateY(0)';
+            observer.unobserve(target);
           }
         });
       }, observerOptions);
 
-      document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700');
+      document.querySelectorAll<HTMLElement>('.animate-on-scroll').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(2rem)';
+        el.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(el);
       });
 
@@ -107,7 +149,7 @@ const {
           if (section === currentSection) {
             (link as HTMLElement).style.color = 'var(--color-primary)';
           } else {
-            (link as HTMLElement).style.color = 'rgba(250, 250, 250, 0.6)';
+            (link as HTMLElement).style.color = 'var(--color-text-muted)';
           }
         });
 

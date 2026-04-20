@@ -9,12 +9,9 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
-const pricingUrl = lang === 'pl' ? '/pl/pricing' : '/pricing';
-
 const contact = {
   email: 'k.kocot0@gmail.com',
   website: 'bard-dev.com',
-  location: 'Katowice, Poland (Remote)',
 };
 
 const socialLinks = [
@@ -37,7 +34,7 @@ const toastMessages = {
 };
 ---
 
-<section id="contact" class="py-24 lg:py-32">
+<section id="contact" class="py-20 lg:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
       <!-- Info -->
@@ -45,39 +42,51 @@ const toastMessages = {
         <span class="section-tag">{t.contact.tag}</span>
         <h2 class="section-title mb-6 whitespace-pre-line">{t.contact.title}</h2>
 
-        <p class="mb-6" style="color: rgba(250, 250, 250, 0.6);">
+        <p class="mb-6" style="color: var(--color-text-muted);">
           {t.contact.description}
         </p>
-
-        <a href={pricingUrl} class="btn btn-outline mb-8 inline-flex">
-          {t.contact.pricingCta}
-        </a>
 
         <!-- Contact Details -->
         <div class="space-y-4 mb-8">
           <a
             href={`mailto:${contact.email}`}
-            class="flex items-center gap-4 transition-colors"
-            style="color: rgba(250, 250, 250, 0.6);"
+            class="flex items-center gap-4 transition-colors group"
+            style="color: var(--color-text-muted);"
           >
-            <span class="text-xl">✉️</span>
-            <span class="hover:text-[#10b981]">{contact.email}</span>
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </span>
+            <span class="group-hover:text-[--color-primary] transition-colors">{contact.email}</span>
           </a>
 
           <a
             href={`https://${contact.website}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-4 transition-colors"
-            style="color: rgba(250, 250, 250, 0.6);"
+            class="flex items-center gap-4 transition-colors group"
+            style="color: var(--color-text-muted);"
           >
-            <span class="text-xl">🌐</span>
-            <span class="hover:text-[#10b981]">{contact.website}</span>
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </span>
+            <span class="group-hover:text-[--color-primary] transition-colors">{contact.website}</span>
           </a>
 
-          <div class="flex items-center gap-4" style="color: rgba(250, 250, 250, 0.6);">
-            <span class="text-xl">📍</span>
-            <span>{contact.location}</span>
+          <div class="flex items-center gap-4" style="color: var(--color-text-muted);">
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
+              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </span>
+            <span>{t.contact.location}</span>
           </div>
         </div>
 
@@ -91,8 +100,7 @@ const toastMessages = {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.name}
-                class="w-11 h-11 flex items-center justify-center rounded-full transition-all duration-200 hover:-translate-y-0.5"
-                style="background: rgba(250, 250, 250, 0.05); border: 1px solid rgba(250, 250, 250, 0.1); color: rgba(250, 250, 250, 0.6);"
+                class="w-11 h-11 flex items-center justify-center rounded-full transition-all duration-200 hover:-translate-y-0.5 social-link-hover"
               >
                 <IconComponent class="w-5 h-5" />
               </a>
@@ -105,12 +113,12 @@ const toastMessages = {
       <form
         id="contact-form"
         class="p-8 rounded-2xl animate-on-scroll"
-        style="background: rgba(250, 250, 250, 0.03); border: 1px solid rgba(250, 250, 250, 0.08);"
+        style="background: var(--color-bg-card); border: 1px solid var(--color-border);"
         data-success-message={toastMessages.success}
         data-error-message={toastMessages.error}
       >
         <div class="mb-6">
-          <label for="name" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+          <label for="name" class="block text-sm font-medium mb-2" style="color: var(--color-text);">
             {t.contact.form.name}
           </label>
           <input
@@ -123,7 +131,7 @@ const toastMessages = {
         </div>
 
         <div class="mb-6">
-          <label for="email" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+          <label for="email" class="block text-sm font-medium mb-2" style="color: var(--color-text);">
             {t.contact.form.email}
           </label>
           <input
@@ -136,7 +144,7 @@ const toastMessages = {
         </div>
 
         <div class="mb-6">
-          <label for="message" class="block text-sm font-medium mb-2" style="color: rgba(250, 250, 250, 0.8);">
+          <label for="message" class="block text-sm font-medium mb-2" style="color: var(--color-text);">
             {t.contact.form.message}
           </label>
           <textarea
@@ -158,7 +166,7 @@ const toastMessages = {
 </section>
 
 <!-- Toast container -->
-<div id="toast-container" class="toast-container"></div>
+<div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
 
 <script>
   import { sendContactForm } from '../services/contact';
@@ -171,8 +179,12 @@ const toastMessages = {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
 
-    const icon = type === 'success' ? '✓' : '✕';
-    toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+    const icon = type === 'success' ? '\u2713' : '\u2715';
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = icon;
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = message;
+    toast.replaceChildren(iconSpan, msgSpan);
 
     container.appendChild(toast);
 

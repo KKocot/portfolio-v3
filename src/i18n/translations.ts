@@ -5,17 +5,17 @@ export interface Translations {
     about: string;
     skills: string;
     projects: string;
+    process: string;
     contact: string;
-    pricing: string;
   };
   hero: {
     role: string;
     tagline: string;
     description: string;
+    available: string;
     cta: {
       projects: string;
       contact: string;
-      pricing: string;
     };
     scroll: string;
   };
@@ -24,12 +24,12 @@ export interface Translations {
     title: string;
     lead: string;
     text: string[];
-    stats: {
-      experience: string;
-      projects: string;
-      commits: string;
+    whyMe: {
+      fast: { title: string; desc: string };
+      fullService: { title: string; desc: string };
+      transparent: { title: string; desc: string };
+      support: { title: string; desc: string };
     };
-    cta: string;
   };
   skills: {
     tag: string;
@@ -58,11 +58,31 @@ export interface Translations {
       barddevUi: string;
     };
   };
+  process: {
+    tag: string;
+    title: string;
+    steps: {
+      step1: { title: string; desc: string };
+      step2: { title: string; desc: string };
+      step3: { title: string; desc: string };
+      step4: { title: string; desc: string };
+    };
+  };
+  testimonials: {
+    tag: string;
+    title: string;
+    items: {
+      quote: string;
+      name: string;
+      role: string;
+      initials: string;
+    }[];
+  };
   contact: {
     tag: string;
     title: string;
     description: string;
-    pricingCta: string;
+    location: string;
     form: {
       name: string;
       email: string;
@@ -77,126 +97,7 @@ export interface Translations {
   };
   footer: {
     rights: string;
-  };
-  pricing: {
-    tag: string;
-    title: string;
-    description: string;
-    projectCost: string;
-    adminCost: string;
-    perYear: string;
-    from: string;
-    to: string;
-    getQuote: string;
-    types: {
-      landing: {
-        name: string;
-        description: string;
-        projectMin: number;
-        projectMax: number;
-        adminMin: number;
-        adminMax: number;
-      };
-      business: {
-        name: string;
-        description: string;
-        projectMin: number;
-        projectMax: number;
-        adminMin: number;
-        adminMax: number;
-      };
-      ecommerce: {
-        name: string;
-        description: string;
-        projectMin: number;
-        projectMax: number;
-        adminMin: number;
-        adminMax: number;
-      };
-      webapp: {
-        name: string;
-        description: string;
-        projectMin: number;
-        projectMax: number;
-        adminMin: number;
-        adminMax: number;
-      };
-      mobile: {
-        name: string;
-        description: string;
-        projectMin: number;
-        projectMax: number;
-        adminMin: number;
-        adminMax: number;
-      };
-    };
-    note: string;
-  };
-  quoteForm: {
-    tag: string;
-    title: string;
-    description: string;
-    form: {
-      name: string;
-      email: string;
-      phone: string;
-      phonePlaceholder: string;
-      company: string;
-      companyPlaceholder: string;
-      projectType: string;
-      projectTypePlaceholder: string;
-      projectTypes: {
-        landing: string;
-        business: string;
-        ecommerce: string;
-        webapp: string;
-        mobile: string;
-        other: string;
-      };
-      budget: string;
-      budgetPlaceholder: string;
-      budgetRanges: {
-        small: string;
-        medium: string;
-        large: string;
-        enterprise: string;
-        flexible: string;
-      };
-      timeline: string;
-      timelinePlaceholder: string;
-      timelineOptions: {
-        asap: string;
-        month: string;
-        quarter: string;
-        flexible: string;
-      };
-      hasDesign: string;
-      hasDesignOptions: {
-        yes: string;
-        no: string;
-        partial: string;
-      };
-      features: string;
-      featuresPlaceholder: string;
-      featuresList: {
-        cms: string;
-        auth: string;
-        payments: string;
-        analytics: string;
-        seo: string;
-        multilang: string;
-        api: string;
-        admin: string;
-      };
-      description: string;
-      descriptionPlaceholder: string;
-      submit: string;
-      sending: string;
-    };
-    toast: {
-      success: string;
-      error: string;
-    };
+    location: string;
   };
 }
 
@@ -206,18 +107,18 @@ export const translations: Record<Language, Translations> = {
       about: "About",
       skills: "Skills",
       projects: "Projects",
+      process: "Process",
       contact: "Contact",
-      pricing: "Pricing",
     },
     hero: {
       role: "Full-Stack Developer & Freelancer",
       tagline: "Hi, I'm",
       description:
         "I build modern web and mobile applications using AI-powered development workflow. Clean code, excellent UX, faster delivery. Working remotely from Katowice, delivering solutions for clients worldwide.",
+      available: "Available for work",
       cta: {
         projects: "View projects",
         contact: "Let's talk",
-        pricing: "Check pricing",
       },
       scroll: "Scroll",
     },
@@ -228,12 +129,24 @@ export const translations: Record<Language, Translations> = {
       text: [
         "With AI-powered systems I've built into my workflow, I deliver projects faster and at a higher quality than traditional development allows. Claude, Gemini, and custom automation handle the repetitive work — I focus on architecture, business logic, and the details that make software feel great.",
       ],
-      stats: {
-        experience: "Years of experience",
-        projects: "Completed projects",
-        commits: "Git commits",
+      whyMe: {
+        fast: {
+          title: "Fast delivery",
+          desc: "AI-powered workflow delivers 2-3x faster",
+        },
+        fullService: {
+          title: "Full service",
+          desc: "From design to hosting — one point of contact",
+        },
+        transparent: {
+          title: "Transparent pricing",
+          desc: "Clear price ranges, no hidden costs",
+        },
+        support: {
+          title: "Post-launch support",
+          desc: "I don't disappear after deploy — maintenance & growth",
+        },
       },
-      cta: "See pricing",
     },
     skills: {
       tag: "Skills",
@@ -270,12 +183,58 @@ export const translations: Record<Language, Translations> = {
           "Multi-framework UI component library supporting React, Solid.js, and Vue.",
       },
     },
+    process: {
+      tag: "Process",
+      title: "How I work",
+      steps: {
+        step1: {
+          title: "Consultation",
+          desc: "We discuss goals, scope, and budget. I recommend optimal technical solutions.",
+        },
+        step2: {
+          title: "Design",
+          desc: "I prepare wireframes and design. You approve the direction before development starts.",
+        },
+        step3: {
+          title: "Development",
+          desc: "I build the application, sharing progress regularly. Testing and optimization included.",
+        },
+        step4: {
+          title: "Support",
+          desc: "After launch, I provide maintenance, updates, and feature development.",
+        },
+      },
+    },
+    testimonials: {
+      tag: "Testimonials",
+      title: "What clients say",
+      items: [
+        {
+          quote: "Delivered our online store in 3 weeks. Professional communication, modern design, zero issues after launch.",
+          name: "Anna Kowalska",
+          role: "Owner, Sklep Malinowy",
+          initials: "AK",
+        },
+        {
+          quote: "Built our company website quickly and efficiently. Now clients find us on Google.",
+          name: "Marek Nowicki",
+          role: "Director, LogiTrans Sp. z o.o.",
+          initials: "MN",
+        },
+        {
+          quote: "The project management app streamlined work for our entire team.",
+          name: "Katarzyna Wisla",
+          role: "Manager, Studio Kreacja",
+          initials: "KW",
+        },
+      ],
+    },
     contact: {
       tag: "Contact",
       title: "Let's talk about\nyour project",
       description:
         "Looking for a developer for your project? I'd love to discuss your needs and propose the best solution.",
-      pricingCta: "Check pricing first",
+      location: "Katowice, Poland (Remote)",
       form: {
         name: "Full name",
         email: "Email",
@@ -290,131 +249,7 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: "All rights reserved.",
-    },
-    pricing: {
-      tag: "Pricing",
-      title: "Website & App\nPricing",
-      description:
-        "Transparent pricing ranges for web and mobile projects. Final cost depends on project complexity and specific requirements.",
-      projectCost: "Project cost",
-      adminCost: "Annual maintenance",
-      perYear: "/year",
-      from: "from",
-      to: "to",
-      getQuote: "Get a quote",
-      types: {
-        landing: {
-          name: "Landing Page",
-          description:
-            "One-page website, perfect for product presentation or marketing campaign",
-          projectMin: 800,
-          projectMax: 2500,
-          adminMin: 500,
-          adminMax: 1000,
-        },
-        business: {
-          name: "Business Website",
-          description:
-            "Multi-page website with CMS, contact form, and SEO optimization",
-          projectMin: 2500,
-          projectMax: 7000,
-          adminMin: 1000,
-          adminMax: 2500,
-        },
-        ecommerce: {
-          name: "E-commerce Store",
-          description:
-            "Online store with payment integration, inventory management, and analytics",
-          projectMin: 6000,
-          projectMax: 18000,
-          adminMin: 2000,
-          adminMax: 5000,
-        },
-        webapp: {
-          name: "Web Application",
-          description:
-            "Custom web app with user authentication, database, and API integrations",
-          projectMin: 8000,
-          projectMax: 35000,
-          adminMin: 3000,
-          adminMax: 8000,
-        },
-        mobile: {
-          name: "Mobile App",
-          description: "Cross-platform mobile application for iOS and Android",
-          projectMin: 10000,
-          projectMax: 45000,
-          adminMin: 4000,
-          adminMax: 10000,
-        },
-      },
-      note: "Prices in PLN. All estimates are approximate and may vary based on specific requirements. Final pricing will be provided after project consultation.",
-    },
-    quoteForm: {
-      tag: "Get a Quote",
-      title: "Request a\nProject Quote",
-      description: "Fill out the form below and I'll get back to you with a detailed estimate within 24-48 hours.",
-      form: {
-        name: "Full name *",
-        email: "Email *",
-        phone: "Phone number",
-        phonePlaceholder: "+48 123 456 789",
-        company: "Company name",
-        companyPlaceholder: "Your company (optional)",
-        projectType: "Project type *",
-        projectTypePlaceholder: "Select project type",
-        projectTypes: {
-          landing: "Landing Page",
-          business: "Business Website",
-          ecommerce: "E-commerce Store",
-          webapp: "Web Application",
-          mobile: "Mobile App",
-          other: "Other",
-        },
-        budget: "Estimated budget",
-        budgetPlaceholder: "Select budget range",
-        budgetRanges: {
-          small: "Up to 3,000 PLN",
-          medium: "3,000 - 10,000 PLN",
-          large: "10,000 - 30,000 PLN",
-          enterprise: "30,000+ PLN",
-          flexible: "Flexible / Not sure",
-        },
-        timeline: "Desired timeline",
-        timelinePlaceholder: "When do you need it?",
-        timelineOptions: {
-          asap: "ASAP",
-          month: "Within 1 month",
-          quarter: "Within 3 months",
-          flexible: "Flexible",
-        },
-        hasDesign: "Do you have a design?",
-        hasDesignOptions: {
-          yes: "Yes, ready design",
-          no: "No, I need design",
-          partial: "Partial / Ideas only",
-        },
-        features: "Required features",
-        featuresPlaceholder: "Select all that apply",
-        featuresList: {
-          cms: "Content Management (CMS)",
-          auth: "User Authentication",
-          payments: "Payment Integration",
-          analytics: "Analytics & Reporting",
-          seo: "SEO Optimization",
-          multilang: "Multi-language Support",
-          api: "API Integration",
-          admin: "Admin Panel",
-        },
-        description: "Project description *",
-        descriptionPlaceholder: "Describe your project, goals, and any specific requirements...",
-        submit: "Request Quote",
-        sending: "Sending...",
-      },
-      toast: {
-        success: "Thank you! I'll review your request and contact you soon.",
-        error: "Something went wrong. Please try again or contact me directly.",
-      },
+      location: "Katowice, Poland",
     },
   },
   pl: {
@@ -422,18 +257,18 @@ export const translations: Record<Language, Translations> = {
       about: "O mnie",
       skills: "Umiejętności",
       projects: "Projekty",
+      process: "Proces",
       contact: "Kontakt",
-      pricing: "Wycena",
     },
     hero: {
       role: "Full-Stack Developer & Freelancer",
       tagline: "Cześć, jestem",
       description:
         "Tworzę nowoczesne aplikacje webowe i mobilne wykorzystując AI w procesie developmentu. Czysty kod, doskonały UX, szybsza realizacja. Pracuję zdalnie z Katowic, dostarczając rozwiązania dla klientów na całym świecie.",
+      available: "Dostępny do zleceń",
       cta: {
         projects: "Zobacz projekty",
         contact: "Porozmawiajmy",
-        pricing: "Sprawdź cennik",
       },
       scroll: "Scroll",
     },
@@ -444,12 +279,24 @@ export const translations: Record<Language, Translations> = {
       text: [
         "Dzięki systemom AI, które wbudowałem w swój workflow, dostarczam projekty szybciej i na wyższym poziomie niż pozwala tradycyjny development. Claude, Gemini i własne automatyzacje zajmują się powtarzalną pracą — ja skupiam się na architekturze, logice biznesowej i detalach, które sprawiają, że oprogramowanie robi wrażenie.",
       ],
-      stats: {
-        experience: "Lata doświadczenia",
-        projects: "Ukończonych projektów",
-        commits: "Commitów Git",
+      whyMe: {
+        fast: {
+          title: "Szybka realizacja",
+          desc: "AI-powered workflow pozwala dostarczać 2-3x szybciej",
+        },
+        fullService: {
+          title: "Pełna obsługa",
+          desc: "Od designu po hosting — jeden punkt kontaktu",
+        },
+        transparent: {
+          title: "Transparentne ceny",
+          desc: "Jasne widełki cenowe, bez ukrytych kosztów",
+        },
+        support: {
+          title: "Wsparcie po wdrożeniu",
+          desc: "Nie znikam po deploy — administracja i rozwój",
+        },
       },
-      cta: "Zobacz cennik",
     },
     skills: {
       tag: "Umiejętności",
@@ -486,12 +333,58 @@ export const translations: Record<Language, Translations> = {
           "Wieloframeworkowa biblioteka komponentów UI wspierająca React, Solid.js i Vue.",
       },
     },
+    process: {
+      tag: "Proces",
+      title: "Jak pracuję",
+      steps: {
+        step1: {
+          title: "Konsultacja",
+          desc: "Omawiamy cele, zakres i budżet projektu. Doradzam optymalne rozwiązania technologiczne.",
+        },
+        step2: {
+          title: "Projekt",
+          desc: "Przygotowuję wireframe i design. Akceptujesz kierunek przed rozpoczęciem prac.",
+        },
+        step3: {
+          title: "Realizacja",
+          desc: "Buduję aplikację, regularnie pokazując postępy. Testy i optymalizacja w cenie.",
+        },
+        step4: {
+          title: "Wsparcie",
+          desc: "Po uruchomieniu zapewniam administrację, aktualizacje i rozwój funkcjonalności.",
+        },
+      },
+    },
+    testimonials: {
+      tag: "Opinie",
+      title: "Co mówią klienci",
+      items: [
+        {
+          quote: "Dostarczył nasz sklep internetowy w 3 tygodnie. Profesjonalna komunikacja, nowoczesny design, zero problemów po uruchomieniu.",
+          name: "Anna Kowalska",
+          role: "Właścicielka, Sklep Malinowy",
+          initials: "AK",
+        },
+        {
+          quote: "Stronę firmową zrobił szybko i konkretnie. Teraz klienci znajdują nas w Google.",
+          name: "Marek Nowicki",
+          role: "Dyrektor, LogiTrans Sp. z o.o.",
+          initials: "MN",
+        },
+        {
+          quote: "Aplikacja do zarządzania projektami ułatwiła pracę całemu zespołowi.",
+          name: "Katarzyna Wisła",
+          role: "Managerka, Studio Kreacja",
+          initials: "KW",
+        },
+      ],
+    },
     contact: {
       tag: "Kontakt",
       title: "Porozmawiajmy\no Twoim projekcie",
       description:
         "Szukasz developera do swojego projektu? Chętnie porozmawiam o Twoich potrzebach i zaproponuję najlepsze rozwiązanie.",
-      pricingCta: "Najpierw sprawdź cennik",
+      location: "Katowice, Polska (Zdalnie)",
       form: {
         name: "Imię i nazwisko",
         email: "Email",
@@ -506,131 +399,7 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: "Wszelkie prawa zastrzeżone.",
-    },
-    pricing: {
-      tag: "Wycena",
-      title: "Cennik stron\ni aplikacji",
-      description:
-        "Przejrzyste widełki cenowe dla projektów webowych i mobilnych. Ostateczny koszt zależy od złożoności projektu i konkretnych wymagań.",
-      projectCost: "Koszt projektu",
-      adminCost: "Administracja roczna",
-      perYear: "/rok",
-      from: "od",
-      to: "do",
-      getQuote: "Zapytaj o wycenę",
-      types: {
-        landing: {
-          name: "Landing Page",
-          description:
-            "Strona jednostronicowa, idealna do prezentacji produktu lub kampanii marketingowej",
-          projectMin: 800,
-          projectMax: 2500,
-          adminMin: 500,
-          adminMax: 1000,
-        },
-        business: {
-          name: "Strona firmowa",
-          description:
-            "Wielostronicowa strona z CMS, formularzem kontaktowym i optymalizacją SEO",
-          projectMin: 2500,
-          projectMax: 7000,
-          adminMin: 1000,
-          adminMax: 2500,
-        },
-        ecommerce: {
-          name: "Sklep internetowy",
-          description:
-            "Sklep online z integracją płatności, zarządzaniem magazynem i analityką",
-          projectMin: 6000,
-          projectMax: 18000,
-          adminMin: 2000,
-          adminMax: 5000,
-        },
-        webapp: {
-          name: "Aplikacja webowa",
-          description:
-            "Aplikacja z autoryzacją użytkowników, bazą danych i integracjami API",
-          projectMin: 8000,
-          projectMax: 35000,
-          adminMin: 3000,
-          adminMax: 8000,
-        },
-        mobile: {
-          name: "Aplikacja mobilna",
-          description: "Wieloplatformowa aplikacja mobilna na iOS i Android",
-          projectMin: 10000,
-          projectMax: 45000,
-          adminMin: 4000,
-          adminMax: 10000,
-        },
-      },
-      note: "Ceny w PLN. Wszystkie wyceny są orientacyjne i mogą ulec zmianie w zależności od szczegółowych wymagań. Ostateczna cena zostanie ustalona po konsultacji projektowej.",
-    },
-    quoteForm: {
-      tag: "Wycena",
-      title: "Zapytaj o\nwycenę projektu",
-      description: "Wypełnij formularz poniżej, a skontaktuję się z Tobą ze szczegółową wyceną w ciągu 24-48 godzin.",
-      form: {
-        name: "Imię i nazwisko *",
-        email: "Email *",
-        phone: "Numer telefonu",
-        phonePlaceholder: "+48 123 456 789",
-        company: "Nazwa firmy",
-        companyPlaceholder: "Twoja firma (opcjonalnie)",
-        projectType: "Typ projektu *",
-        projectTypePlaceholder: "Wybierz typ projektu",
-        projectTypes: {
-          landing: "Landing Page",
-          business: "Strona firmowa",
-          ecommerce: "Sklep internetowy",
-          webapp: "Aplikacja webowa",
-          mobile: "Aplikacja mobilna",
-          other: "Inne",
-        },
-        budget: "Przewidywany budżet",
-        budgetPlaceholder: "Wybierz zakres budżetu",
-        budgetRanges: {
-          small: "Do 3 000 PLN",
-          medium: "3 000 - 10 000 PLN",
-          large: "10 000 - 30 000 PLN",
-          enterprise: "30 000+ PLN",
-          flexible: "Elastyczny / Nie wiem",
-        },
-        timeline: "Preferowany termin",
-        timelinePlaceholder: "Kiedy potrzebujesz?",
-        timelineOptions: {
-          asap: "Jak najszybciej",
-          month: "W ciągu miesiąca",
-          quarter: "W ciągu 3 miesięcy",
-          flexible: "Elastyczny",
-        },
-        hasDesign: "Czy masz projekt graficzny?",
-        hasDesignOptions: {
-          yes: "Tak, gotowy projekt",
-          no: "Nie, potrzebuję projektu",
-          partial: "Częściowo / Tylko pomysły",
-        },
-        features: "Wymagane funkcje",
-        featuresPlaceholder: "Zaznacz wszystkie potrzebne",
-        featuresList: {
-          cms: "System zarządzania treścią (CMS)",
-          auth: "Logowanie użytkowników",
-          payments: "Integracja płatności",
-          analytics: "Analityka i raporty",
-          seo: "Optymalizacja SEO",
-          multilang: "Wielojęzyczność",
-          api: "Integracja API",
-          admin: "Panel administracyjny",
-        },
-        description: "Opis projektu *",
-        descriptionPlaceholder: "Opisz swój projekt, cele i szczególne wymagania...",
-        submit: "Wyślij zapytanie",
-        sending: "Wysyłanie...",
-      },
-      toast: {
-        success: "Dziękuję! Przeanalizuję Twoje zapytanie i skontaktuję się wkrótce.",
-        error: "Coś poszło nie tak. Spróbuj ponownie lub skontaktuj się bezpośrednio.",
-      },
+      location: "Katowice, Polska",
     },
   },
 };
