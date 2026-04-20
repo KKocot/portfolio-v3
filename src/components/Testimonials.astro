@@ -1,0 +1,51 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props;
+---
+
+<!-- PLACEHOLDER SECTION - Replace with real client testimonials -->
+<section id="testimonials" class="py-20 lg:py-28" style="background: var(--color-bg-alt);">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="section-tag">{t.testimonials.tag}</span>
+      <h2 class="section-title">{t.testimonials.title}</h2>
+    </div>
+
+    <!-- Testimonial Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {t.testimonials.items.map((item, index) => (
+        <!-- PLACEHOLDER TESTIMONIAL - Replace with real client quote -->
+        <blockquote
+          class="p-6 rounded-xl animate-on-scroll"
+          style="background: var(--color-bg-card); border: 1px solid var(--color-border);"
+          data-stagger-index={index}
+        >
+          <!-- Quote icon -->
+          <svg class="w-8 h-8 mb-4" style="color: var(--color-primary); opacity: 0.3;" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z"></path>
+          </svg>
+
+          <p class="text-sm italic leading-relaxed mb-6" style="color: var(--color-text);">
+            "{item.quote}"
+          </p>
+
+          <footer class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: var(--color-primary-muted);">
+              <span class="text-sm font-medium" style="color: var(--color-primary);">{item.initials}</span>
+            </div>
+            <div>
+              <p class="text-sm font-medium" style="color: var(--color-text);">{item.name}</p>
+              <p class="text-xs" style="color: var(--color-text-muted);">{item.role}</p>
+            </div>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
