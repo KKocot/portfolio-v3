@@ -27,13 +27,9 @@ const { currentLang } = Astro.props;
   // Get all language switches (desktop and mobile)
   const langSwitches = document.querySelectorAll('.lang-switch');
 
-  // Get current language from URL or localStorage
+  // Get current language from URL (single source of truth)
   function getCurrentLang(): 'en' | 'pl' {
-    const path = window.location.pathname;
-    if (path.startsWith('/pl')) return 'pl';
-    const stored = localStorage.getItem('lang');
-    if (stored === 'pl' || stored === 'en') return stored;
-    return 'en';
+    return window.location.pathname.startsWith('/pl') ? 'pl' : 'en';
   }
 
   // Set language and navigate to appropriate localized route
@@ -64,8 +60,9 @@ const { currentLang } = Astro.props;
       });
     });
 
-    // Update active state
+    // Update active state based on URL and sync localStorage
     const currentLang = getCurrentLang();
+    localStorage.setItem('lang', currentLang);
     buttons.forEach((btn) => {
       const btnLang = (btn as HTMLElement).dataset.lang;
       btn.classList.toggle('active', btnLang === currentLang);
