@@ -8,10 +8,19 @@ interface Props {
 
 const { t } = Astro.props;
 
+const colorMap: Record<string, { color: string; bg: string; border: string; glow: string }> = {
+  blue:   { color: '#3B82F6', bg: 'rgba(59,130,246,0.08)',  border: 'rgba(59,130,246,0.25)',  glow: '0 0 16px rgba(59,130,246,0.12)' },
+  green:  { color: '#10B981', bg: 'rgba(16,185,129,0.08)',  border: 'rgba(16,185,129,0.25)',  glow: '0 0 16px rgba(16,185,129,0.12)' },
+  purple: { color: '#8B5CF6', bg: 'rgba(139,92,246,0.08)',  border: 'rgba(139,92,246,0.25)',  glow: '0 0 16px rgba(139,92,246,0.12)' },
+  orange: { color: '#F97316', bg: 'rgba(249,115,22,0.08)',  border: 'rgba(249,115,22,0.25)',  glow: '0 0 16px rgba(249,115,22,0.12)' },
+  cyan:   { color: '#06B6D4', bg: 'rgba(6,182,212,0.08)',   border: 'rgba(6,182,212,0.25)',   glow: '0 0 16px rgba(6,182,212,0.12)' },
+};
+
 const skillCategories = [
   {
     title: t.skills.categories.frontend,
     color: "blue",
+    position: "left-top",
     skills: [
       { icon: "simple-icons:react", name: "React" },
       { icon: "simple-icons:nextdotjs", name: "Next.js" },
@@ -25,6 +34,7 @@ const skillCategories = [
   {
     title: t.skills.categories.backend,
     color: "green",
+    position: "right-top",
     skills: [
       { icon: "simple-icons:nodedotjs", name: "Node.js" },
       { icon: "simple-icons:bun", name: "Bun" },
@@ -40,6 +50,7 @@ const skillCategories = [
   {
     title: t.skills.categories.mobile,
     color: "purple",
+    position: "left-bottom",
     skills: [
       { icon: "simple-icons:react", name: "React Native" },
       { icon: "simple-icons:expo", name: "Expo" },
@@ -51,6 +62,7 @@ const skillCategories = [
   {
     title: t.skills.categories.devops,
     color: "orange",
+    position: "center-bottom",
     skills: [
       { icon: "simple-icons:docker", name: "Docker" },
       { icon: "simple-icons:git", name: "Git" },
@@ -64,85 +76,157 @@ const skillCategories = [
   {
     title: t.skills.categories.ai,
     color: "cyan",
+    position: "right-bottom",
     skills: [
-      { icon: "simple-icons:claude", name: "Claude" },
+      { icon: "claude-code", name: "Claude" },
       { icon: "claude-code", name: "Claude Code" },
       { icon: "simple-icons:googlegemini", name: "Gemini" },
     ],
   },
 ];
-
-const colorClasses: Record<string, { dot: string; icon: string; iconHover: string }> = {
-  blue: {
-    dot: 'bg-blue-500',
-    icon: 'text-blue-400/50',
-    iconHover: 'group-hover/skill:text-blue-400',
-  },
-  green: {
-    dot: 'bg-emerald-500',
-    icon: 'text-emerald-400/50',
-    iconHover: 'group-hover/skill:text-emerald-400',
-  },
-  purple: {
-    dot: 'bg-purple-500',
-    icon: 'text-purple-400/50',
-    iconHover: 'group-hover/skill:text-purple-400',
-  },
-  orange: {
-    dot: 'bg-orange-500',
-    icon: 'text-orange-400/50',
-    iconHover: 'group-hover/skill:text-orange-400',
-  },
-  cyan: {
-    dot: 'bg-cyan-500',
-    icon: 'text-cyan-400/50',
-    iconHover: 'group-hover/skill:text-cyan-400',
-  },
-};
 ---
 
-<section id="skills" class="py-20 lg:py-28">
+<section id="skills" class="py-20 lg:py-24">
   <div class="max-w-[1200px] mx-auto px-6">
-    <!-- Header -->
-    <div class="text-center mb-16">
-      <span class="section-tag">{t.skills.tag}</span>
-      <h2 class="section-title whitespace-pre-line">{t.skills.title}</h2>
-    </div>
+    <div class="skills-orbital">
 
-    <!-- Main Skills Grid -->
-    <div class="flex flex-wrap justify-center gap-6">
-      {skillCategories.map((category, index) => {
-        const colors = colorClasses[category.color];
-        return (
-          <div
-            class="skill-card animate-on-scroll group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-            data-stagger-index={index}
-          >
-            <!-- Category Header -->
-            <div class="flex items-center gap-3 mb-6 pb-4" style="border-bottom: 1px solid var(--color-border);">
-              <div class={`w-2 h-2 rounded-full ${colors.dot}`}></div>
-              <h3 class="text-xs font-semibold uppercase tracking-wider" style="color: var(--color-text-muted);">
-                {category.title}
-              </h3>
+      <!-- CENTER: heading (first in DOM for mobile) -->
+      <div class="skills-orbital__center">
+        <div class="text-center">
+          <span class="section-tag">{t.skills.tag}</span>
+          <h2 class="section-title whitespace-pre-line">{t.skills.title}</h2>
+        </div>
+      </div>
+
+      <!-- LEFT column (desktop) -->
+      <div class="skills-orbital__left">
+        {skillCategories.filter(c => c.position.startsWith('left')).map((category, i) => {
+          const colors = colorMap[category.color] ?? colorMap['blue'];
+          return (
+            <div class="skill-group skill-animate" data-group-index={i}>
+              <h3 class="sr-only">{category.title}</h3>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
+                <span class="text-[11px] font-semibold uppercase tracking-wider" style="color: var(--color-text-muted);">{category.title}</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                {category.skills.map(skill => (
+                  <div
+                    class="skill-node flex flex-col items-center gap-1"
+                    style={`--s-bg: ${colors.bg}; --s-border: ${colors.border}; --s-glow: ${colors.glow}; --s-color: ${colors.color};`}
+                  >
+                    <div class="skill-icon-wrap w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center">
+                      <Icon name={skill.icon} class="w-5 h-5 sm:w-[22px] sm:h-[22px] skill-icon" />
+                    </div>
+                    <span class="skill-label text-[10px] sm:text-[11px] text-center leading-tight">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
+          );
+        })}
+      </div>
 
-            <!-- Skills List -->
-            <div class="grid grid-cols-3 gap-3">
-              {category.skills.map((skill) => (
-                <div class="group/skill flex flex-col items-center gap-1.5 p-2 rounded-lg transition-all duration-200 skill-item-hover">
-                  <Icon
-                    name={skill.icon}
-                    class={`w-8 h-8 ${colors.icon} ${colors.iconHover} transition-colors duration-200`}
-                  />
-                  <span class="text-[10px] text-center leading-tight transition-colors" style="color: var(--color-text-muted);">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
+      <!-- RIGHT column (desktop) -->
+      <div class="skills-orbital__right">
+        {skillCategories.filter(c => c.position.startsWith('right')).map((category, i) => {
+          const colors = colorMap[category.color] ?? colorMap['blue'];
+          return (
+            <div class="skill-group skill-animate" data-group-index={i === 0 ? 1 : 4}>
+              <h3 class="sr-only">{category.title}</h3>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
+                <span class="text-[11px] font-semibold uppercase tracking-wider" style="color: var(--color-text-muted);">{category.title}</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                {category.skills.map(skill => (
+                  <div
+                    class="skill-node flex flex-col items-center gap-1"
+                    style={`--s-bg: ${colors.bg}; --s-border: ${colors.border}; --s-glow: ${colors.glow}; --s-color: ${colors.color};`}
+                  >
+                    <div class="skill-icon-wrap w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center">
+                      <Icon name={skill.icon} class="w-5 h-5 sm:w-[22px] sm:h-[22px] skill-icon" />
+                    </div>
+                    <span class="skill-label text-[10px] sm:text-[11px] text-center leading-tight">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- BOTTOM CENTER: DevOps -->
+      {skillCategories.filter(c => c.position === 'center-bottom').map((category) => {
+        const colors = colorMap[category.color] ?? colorMap['blue'];
+        return (
+          <div class="skills-orbital__bottom">
+            <div class="skill-group skill-animate" data-group-index={3}>
+              <h3 class="sr-only">{category.title}</h3>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
+                <span class="text-[11px] font-semibold uppercase tracking-wider" style="color: var(--color-text-muted);">{category.title}</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                {category.skills.map(skill => (
+                  <div
+                    class="skill-node flex flex-col items-center gap-1"
+                    style={`--s-bg: ${colors.bg}; --s-border: ${colors.border}; --s-glow: ${colors.glow}; --s-color: ${colors.color};`}
+                  >
+                    <div class="skill-icon-wrap w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center">
+                      <Icon name={skill.icon} class="w-5 h-5 sm:w-[22px] sm:h-[22px] skill-icon" />
+                    </div>
+                    <span class="skill-label text-[10px] sm:text-[11px] text-center leading-tight">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         );
       })}
+
     </div>
   </div>
+
+  <noscript>
+    <style>
+      .skill-animate { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </section>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const groups = entry.target.querySelectorAll('.skill-group.skill-animate');
+
+          if (prefersReducedMotion) {
+            groups.forEach((group) => group.classList.add('is-visible'));
+          } else {
+            groups.forEach((group) => {
+              const el = group as HTMLElement;
+              const groupIndex = parseInt(el.dataset.groupIndex || '0');
+              const delay = groupIndex * 100;
+              setTimeout(() => el.classList.add('is-visible'), delay);
+            });
+          }
+
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: '0px 0px -60px 0px', threshold: 0.01 },
+  );
+
+  const orbital = document.querySelector('.skills-orbital');
+  if (orbital) skillObserver.observe(orbital);
+
+  // Cleanup for View Transitions
+  document.addEventListener('astro:before-swap', () => {
+    skillObserver.disconnect();
+  });
+</script>
