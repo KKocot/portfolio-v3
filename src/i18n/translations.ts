@@ -61,6 +61,10 @@ export interface Translations {
   process: {
     tag: string;
     title: string;
+    sectionDescription: string;
+    principlesTitle: string;
+    principles: string[];
+    cta: string;
     steps: {
       step1: { title: string; desc: string };
       step2: { title: string; desc: string };
@@ -186,6 +190,11 @@ export const translations: Record<Language, Translations> = {
     process: {
       tag: "Process",
       title: "How I work",
+      sectionDescription:
+        "How we'll work together — from first call to launch day. Clear steps, regular updates, no guesswork.",
+      principlesTitle: "What I stand for",
+      principles: ["Regular demos — preview before each milestone ends", "Fixed scope — agreed deliverables, no mid-project surprises", "Bug-fix warranty — post-deploy fixes included", "Direct communication — no middlemen, you talk and write directly to me"],
+      cta: "Let's discuss your project",
       steps: {
         step1: {
           title: "Consultation",
@@ -336,6 +345,11 @@ export const translations: Record<Language, Translations> = {
     process: {
       tag: "Proces",
       title: "Jak pracuję",
+      sectionDescription:
+        "Jak będziemy pracować razem — od pierwszej rozmowy do launch day. Jasne kroki, regularne aktualizacje, bez domysłów.",
+      principlesTitle: "Na czym mi zależy",
+      principles: ["Regularne demo — preview przed końcem każdego etapu", "Fixed scope — ustalony zakres, bez niespodzianek w trakcie projektu", "Gwarancja poprawek — bug-fix po deploy w cenie", "Bezpośrednia komunikacja — bez pośredników, piszesz i dzwonisz do mnie"],
+      cta: "Porozmawiajmy o Twoim projekcie",
       steps: {
         step1: {
           title: "Konsultacja",
