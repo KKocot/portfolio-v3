@@ -87,6 +87,7 @@ export interface Translations {
     title: string;
     description: string;
     location: string;
+    quickReply: string;
     form: {
       name: string;
       email: string;
@@ -244,6 +245,7 @@ export const translations: Record<Language, Translations> = {
       description:
         "Looking for a developer for your project? I'd love to discuss your needs and propose the best solution.",
       location: "Katowice, Poland (Remote)",
+      quickReply: "Drop me an email or send a message — I'll get back within a few hours.",
       form: {
         name: "Full name",
         email: "Email",
@@ -399,6 +401,7 @@ export const translations: Record<Language, Translations> = {
       description:
         "Szukasz developera do swojego projektu? Chętnie porozmawiam o Twoich potrzebach i zaproponuję najlepsze rozwiązanie.",
       location: "Katowice, Polska (Zdalnie)",
+      quickReply: "Napisz maila albo wyślij wiadomość — odezwę się w ciągu kilku godzin.",
       form: {
         name: "Imię i nazwisko",
         email: "Email",
