@@ -47,15 +47,29 @@ export interface Translations {
     title: string;
     viewProject: string;
     viewAll: string;
+    otherTitle: string;
+    metrics: {
+      contributors: string;
+      modules: string;
+      pages: string;
+      openSource: string;
+      canvasEditor: string;
+      worldMap: string;
+      premiumSystem: string;
+      appsServed: string;
+      apiModules: string;
+      aiPowered: string;
+      kanban: string;
+      roleSystem: string;
+      clientProject: string;
+      seoOptimized: string;
+    };
     descriptions: {
       denser: string;
       conqsite: string;
       elysiaBackend: string;
-      shoppingList: string;
       stasiakOpal: string;
-      flashcards: string;
       projectHub: string;
-      barddevUi: string;
     };
   };
   process: {
@@ -169,23 +183,34 @@ export const translations: Record<Language, Translations> = {
       title: "Selected works",
       viewProject: "View project",
       viewAll: "View all projects on GitHub",
+      otherTitle: "Other projects",
+      metrics: {
+        contributors: "contributors",
+        modules: "modules",
+        pages: "pages",
+        openSource: "Open Source",
+        canvasEditor: "Canvas Map Editor",
+        worldMap: "Interactive World Map",
+        premiumSystem: "Premium System",
+        appsServed: "apps powered",
+        apiModules: "API modules",
+        aiPowered: "AI Powered",
+        kanban: "Kanban + Calendar",
+        roleSystem: "Role System",
+        clientProject: "Client Project",
+        seoOptimized: "SEO Optimized",
+      },
       descriptions: {
         denser:
           "Decentralized social media frontend for Hive Blockchain. Successor to hive.blog with blog and wallet modules.",
         conqsite:
-          "Platform for Conquerors Blade gaming community. Guild management, lineup builder, Discord bot integration.",
+          "Full-featured guild management platform for Conqueror's Blade community. Interactive arena map editor built on Canvas, world map with territory tracking, unit and lineup builder, guild wiki, member dashboard with statistics, premium coin system, and in-app chat — all with Discord authentication.",
         elysiaBackend:
-          "REST API built with Bun and Elysia framework. Serves multiple frontend projects with shared database.",
-        shoppingList:
-          "Cross-platform shopping list app with mobile (Expo) and web (Svelte 5) clients sharing a real-time backend.",
+          "Monolithic backend powering 8 applications. 11 API modules covering auth, AI generation, real-time sync, scraping, and payment systems.",
         stasiakOpal:
-          "Landing page for local coal business. Built with React 19 and TanStack Router, optimized for performance and SEO.",
-        flashcards:
-          "Educational app for learning with flashcards. AI-powered card generation, spaced repetition, and progress tracking.",
+          "Commercial landing page for a local business. Built with React 19 and TanStack Router, optimized for Core Web Vitals and local SEO.",
         projectHub:
-          "Project management app with drag & drop boards, task tracking, and data visualization with charts.",
-        barddevUi:
-          "Multi-framework UI component library supporting React, Solid.js, and Vue.",
+          "Task management app with kanban boards, calendar view, role-based permissions, Telegram notifications, and real-time charts.",
       },
     },
     process: {
@@ -325,23 +350,34 @@ export const translations: Record<Language, Translations> = {
       title: "Wybrane realizacje",
       viewProject: "Zobacz projekt",
       viewAll: "Zobacz wszystkie projekty na GitHub",
+      otherTitle: "Inne projekty",
+      metrics: {
+        contributors: "kontrybutorów",
+        modules: "moduły",
+        pages: "stron",
+        openSource: "Open Source",
+        canvasEditor: "Edytor map Canvas",
+        worldMap: "Interaktywna mapa świata",
+        premiumSystem: "System premium",
+        appsServed: "zasilanych aplikacji",
+        apiModules: "modułów API",
+        aiPowered: "AI Powered",
+        kanban: "Kanban + Kalendarz",
+        roleSystem: "System ról",
+        clientProject: "Projekt kliencki",
+        seoOptimized: "Optymalizacja SEO",
+      },
       descriptions: {
         denser:
           "Frontend zdecentralizowanych mediów społecznościowych dla Hive Blockchain. Następca hive.blog z modułami blog i wallet.",
         conqsite:
-          "Platforma dla społeczności Conquerors Blade. Zarządzanie gildiami, kreator składów, integracja z botem Discord.",
+          "Rozbudowana platforma do zarządzania gildią w Conqueror's Blade. Interaktywny edytor map aren na Canvas, mapa świata ze śledzeniem terytoriów, kreator jednostek i składów, wiki gildii, dashboard z statystykami, system premium z walutą, czat gildyjny — wszystko z autoryzacją przez Discord.",
         elysiaBackend:
-          "REST API zbudowane z Bun i frameworkiem Elysia. Obsługuje wiele projektów frontendowych ze wspólną bazą danych.",
-        shoppingList:
-          "Wieloplatformowa aplikacja do list zakupów z klientem mobilnym (Expo) i webowym (Svelte 5) ze wspólnym backendem w czasie rzeczywistym.",
+          "Monolityczny backend zasilający 8 aplikacji. 11 modułów API obejmujących autoryzację, generowanie AI, synchronizację real-time, scraping i systemy płatności.",
         stasiakOpal:
-          "Strona internetowa lokalnej firmy węglowej. Zbudowana w React 19 z TanStack Router, zoptymalizowana pod wydajność i SEO.",
-        flashcards:
-          "Aplikacja edukacyjna do nauki z fiszkami. Generowanie kart przez AI, powtórki z odstępami i śledzenie postępu.",
+          "Komercyjna strona internetowa lokalnej firmy. Zbudowana w React 19 z TanStack Router, zoptymalizowana pod Core Web Vitals i lokalne SEO.",
         projectHub:
-          "Aplikacja do zarządzania projektami z tablicami drag & drop, śledzeniem zadań i wizualizacją danych na wykresach.",
-        barddevUi:
-          "Wieloframeworkowa biblioteka komponentów UI wspierająca React, Solid.js i Vue.",
+          "Aplikacja do zarządzania zadaniami z tablicami kanban, widokiem kalendarza, uprawnieniami opartymi na rolach, powiadomieniami Telegram i wykresami w czasie rzeczywistym.",
       },
     },
     process: {
