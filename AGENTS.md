@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-Ten plik dodaje tylko lokalny kontekst projektu `portfolio-v3`. Globalne zasady, thin-pointer i runtime-wide conventions pozostaja w nadrzednym `CLAUDE.md`.
+Ten plik dodaje tylko lokalny kontekst projektu `portfolio-v3`. Globalne zasady, thin-pointer i runtime-wide conventions pozostaja w nadrzednym `AGENTS.md`.
 
 ## Lokalizacja
 
