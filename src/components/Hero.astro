@@ -1,5 +1,14 @@
 ---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import type { Translations } from '../i18n';
+import portraitSrc from '../assets/portrait.jpg';
+import {
+  PORTRAIT_WIDTHS,
+  PORTRAIT_SIZES,
+  PORTRAIT_FORMAT,
+  PORTRAIT_QUALITY,
+} from '../lib/portrait';
 
 interface Props {
   t: Translations;
@@ -7,45 +16,62 @@ interface Props {
 }
 
 const { t, name } = Astro.props;
+
+const socialLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/KKocot',
+    icon: 'github',
+    color: 'var(--color-primary)',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/krzysztof-kocot-b3043a220/',
+    icon: 'linkedin',
+    color: 'var(--color-accent)',
+  },
+];
 ---
 
 <section id="hero" class="min-h-screen flex items-center pt-[72px] relative">
-  <!-- Hero glow -->
-  <div class="hero-glow absolute top-1/2 left-1/4 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" style="background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.06) 0%, rgba(124, 58, 237, 0.02) 40%, transparent 70%);"></div>
-
   <div class="max-w-[1200px] mx-auto px-6 w-full py-16 lg:py-24 relative z-10">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Portrait/Visual - Left side on desktop -->
-      <div class="order-1 flex justify-center lg:justify-start hero-animate hero-delay-0">
-        <div class="relative">
+      <div class="order-1 flex justify-center lg:justify-start">
+        <div class="relative hero-portrait-shell">
           <!-- Portrait container -->
-          <div class="relative rounded-2xl overflow-hidden aspect-[3/4] w-72 sm:w-80 lg:w-[380px] max-w-[480px] mx-auto lg:mx-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
+          <div class="hero-portrait-frame relative rounded-2xl overflow-hidden aspect-[3/4] w-72 sm:w-80 lg:w-[380px] max-w-[480px] mx-auto lg:mx-0" style="background: var(--surface-card); border: 1px solid var(--color-border-hover);">
 
-            <!-- Portrait image with fallback -->
-            <img
-              src="/portrait.jpg"
+            <!-- Portrait image with fallback (optimized via astro:assets, LCP element) -->
+            <Image
+              src={portraitSrc}
               alt="Krzysztof Kocot — Full-Stack Developer"
               class="portrait-image w-full h-full object-cover"
+              widths={PORTRAIT_WIDTHS}
+              sizes={PORTRAIT_SIZES}
+              format={PORTRAIT_FORMAT}
+              quality={PORTRAIT_QUALITY}
               loading="eager"
+              fetchpriority="high"
               decoding="async"
               onerror="this.style.display='none'; document.getElementById('portrait-fallback')?.classList.remove('hidden');"
             />
 
             <!-- Fallback (when portrait.jpg is missing) -->
-            <div id="portrait-fallback" class="hidden absolute inset-0 flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-elevated));" aria-hidden="true">
-              <span class="text-7xl sm:text-8xl lg:text-9xl font-bold" style="font-family: var(--font-family-display); color: rgba(139, 92, 246, 0.15);">KK</span>
+            <div id="portrait-fallback" class="hidden absolute inset-0 flex items-center justify-center" style="background: var(--surface-card-strong);" aria-hidden="true">
+              <span class="text-7xl sm:text-8xl lg:text-9xl font-bold" style="font-family: var(--font-family-display); color: var(--color-primary-muted);">KK</span>
             </div>
 
             <!-- Subtle bottom gradient overlay -->
-            <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 60%, rgba(10, 10, 10, 0.4));"></div>
+            <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 60%, var(--color-overlay-soft));"></div>
 
-            <!-- Subtle inner violet glow (vignette) -->
-            <div class="absolute inset-0 pointer-events-none" style="box-shadow: inset 0 0 120px rgba(139, 92, 246, 0.08); border-radius: inherit;"></div>
+            <!-- Subtle inner brand glow (vignette) -->
+            <div class="absolute inset-0 pointer-events-none" style="box-shadow: inset 0 0 120px var(--color-primary-muted); border-radius: inherit;"></div>
           </div>
 
           <!-- Availability badge -->
-          <div class="absolute bottom-[-12px] left-1/2 -translate-x-1/2 lg:left-8 lg:translate-x-0 rounded-full px-3 sm:px-4 py-2 flex items-center gap-2" style="background: var(--color-bg); border: 1px solid var(--color-border); backdrop-filter: blur(8px);" role="status">
-            <span class="w-2 h-2 rounded-full" style="background: var(--color-success); animation: pulse 2s ease-in-out infinite;" aria-hidden="true"></span>
+          <div class="absolute bottom-[-12px] left-1/2 -translate-x-1/2 lg:left-8 lg:translate-x-0 rounded-full px-3 sm:px-4 py-2 flex items-center gap-2" style="background: var(--surface-nav); border: 1px solid var(--color-border-hover); backdrop-filter: blur(8px);" role="status">
+            <span class="w-2 h-2 rounded-full" style="background: var(--color-primary);" aria-hidden="true"></span>
             <span class="text-[11px] sm:text-xs" style="color: var(--color-text-muted);">{t.hero.available}</span>
           </div>
         </div>
@@ -53,20 +79,20 @@ const { t, name } = Astro.props;
 
       <!-- Content - Right side on desktop -->
       <div class="order-2 lg:text-left text-center lg:pl-8">
-        <span class="section-tag hero-animate hero-delay-1">
+        <span class="section-tag">
           {t.hero.role}
         </span>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-[4rem] font-normal leading-[1.1] tracking-tight mb-6 hero-animate hero-delay-2" style="font-family: var(--font-family-accent); font-style: italic; letter-spacing: -0.03em;">
+        <h1 class="text-4xl sm:text-5xl lg:text-[4rem] font-normal leading-[1.1] tracking-tight mb-6" style="font-family: var(--font-family-accent); font-style: italic; letter-spacing: -0.03em;">
           {t.hero.tagline}<br />
           <span class="gradient-text">{name}</span>
         </h1>
 
-        <p class="text-base lg:text-lg mb-8 hero-animate hero-delay-3 max-w-lg lg:max-w-none mx-auto lg:mx-0" style="color: var(--color-text-muted); line-height: 1.7;">
+        <p class="text-base lg:text-lg mb-8 max-w-lg lg:max-w-none mx-auto lg:mx-0" style="color: var(--color-text-muted); line-height: 1.7;">
           {t.hero.description}
         </p>
 
-        <div class="flex flex-wrap gap-4 items-center justify-center lg:justify-start hero-animate hero-delay-4">
+        <div class="flex flex-wrap gap-4 items-center justify-center lg:justify-start">
           <a href="#contact" class="btn btn-primary">
             {t.hero.cta.contact}
           </a>
@@ -77,12 +103,44 @@ const { t, name } = Astro.props;
             {t.hero.cta.projects} <span>&rarr;</span>
           </a>
         </div>
+
+        <div class="flex flex-wrap gap-3 items-center justify-center lg:justify-start mt-5">
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-social-chip text-sm"
+              style={`--chip-color: ${link.color};`}
+              aria-label={link.label}
+            >
+              <Icon name={link.icon} class="w-4 h-4" aria-hidden="true" />
+              <span>{link.label}</span>
+            </a>
+          ))}
+          <a
+            href="https://bard-dev.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-social-chip text-sm"
+            style="--chip-color: var(--color-primary);"
+            aria-label="BardDev"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20"></path>
+              <path d="M12 2a15 15 0 0 1 0 20"></path>
+              <path d="M12 2a15 15 0 0 0 0 20"></path>
+            </svg>
+            <span>bard-dev.com</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Scroll Indicator - hidden on mobile -->
-  <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hero-animate hero-delay-5">
+  <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2">
     <span class="text-xs uppercase tracking-widest" style="color: var(--color-text-subtle);">{t.hero.scroll}</span>
     <div class="w-px h-10 scroll-line" style="background: linear-gradient(to bottom, var(--color-text-subtle), transparent);"></div>
   </div>
