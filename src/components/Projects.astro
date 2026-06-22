@@ -21,11 +21,6 @@ interface Project {
   links: ProjectLink[];
 }
 
-interface ProjectMetric {
-  value: string;
-  label: string;
-}
-
 interface ProjectHighlight {
   label: string;
   color: string;
@@ -34,13 +29,12 @@ interface ProjectHighlight {
 interface MeshBlob {
   color: string;
   position: string;
-  animation: string;
 }
 
 interface FeaturedProject extends Project {
   gradient: string;
   accentColor: string;
-  metrics: ProjectMetric[];
+  surface: string;
   highlights: ProjectHighlight[];
   meshBlobs: MeshBlob[];
 }
@@ -59,18 +53,15 @@ const heroProject: FeaturedProject = {
   type: 'Full-Stack App',
   gradient: 'var(--gradient-conqsite)',
   accentColor: '#F59E0B',
-  metrics: [
-    { value: '20+', label: t.projects.metrics.pages },
-  ],
+  surface: 'linear-gradient(145deg, rgba(0, 70, 48, 0.98) 0%, rgba(0, 35, 27, 0.98) 64%, rgba(198, 151, 254, 0.11) 100%)',
   highlights: [
     { label: t.projects.metrics.canvasEditor, color: 'rgba(245, 158, 11, 0.15)' },
     { label: t.projects.metrics.worldMap, color: 'rgba(239, 68, 68, 0.12)' },
     { label: t.projects.metrics.premiumSystem, color: 'rgba(245, 158, 11, 0.1)' },
   ],
   meshBlobs: [
-    { color: 'rgba(245, 158, 11, 0.25)', position: 'top: -10%; right: -5%;', animation: 'meshFloat1 9s ease-in-out infinite' },
-    { color: 'rgba(239, 68, 68, 0.2)', position: 'bottom: 10%; left: -10%;', animation: 'meshFloat2 11s ease-in-out infinite' },
-    { color: 'rgba(245, 158, 11, 0.1)', position: 'top: 40%; right: 25%;', animation: 'meshFloat3 13s ease-in-out infinite' },
+    { color: 'rgba(198, 151, 254, 0.14)', position: 'top: -15%; right: -5%;' },
+    { color: 'rgba(0, 211, 242, 0.10)', position: 'bottom: -10%; left: -10%;' },
   ],
   links: [
     { label: 'Live', url: 'https://conqsite.bard-dev.com', primary: true },
@@ -84,18 +75,15 @@ const secondaryProjects: FeaturedProject[][] = [
       description: t.projects.descriptions.elysiaBackend,
       tags: ['Bun', 'Elysia', 'MongoDB', 'Zod', 'JWT'],
       type: 'Backend',
-      gradient: 'linear-gradient(135deg, #8B5CF6 0%, #4F46E5 100%)',
+      gradient: 'var(--gradient-denser)',
       accentColor: '#8B5CF6',
-      metrics: [
-        { value: '8', label: t.projects.metrics.appsServed },
-        { value: '11', label: t.projects.metrics.apiModules },
-      ],
+      surface: 'var(--surface-card)',
       highlights: [
         { label: t.projects.metrics.aiPowered, color: 'rgba(139, 92, 246, 0.15)' },
       ],
       meshBlobs: [
-        { color: 'rgba(139, 92, 246, 0.2)', position: 'top: -15%; left: -10%;', animation: 'meshFloat1 9s ease-in-out infinite' },
-        { color: 'rgba(79, 70, 229, 0.15)', position: 'bottom: -10%; right: -5%;', animation: 'meshFloat2 11s ease-in-out infinite' },
+        { color: 'rgba(0, 211, 242, 0.12)', position: 'top: -15%; left: -10%;' },
+        { color: 'rgba(198, 151, 254, 0.08)', position: 'bottom: -10%; right: -5%;' },
       ],
       links: [],
     },
@@ -106,16 +94,13 @@ const secondaryProjects: FeaturedProject[][] = [
       type: 'Commercial',
       gradient: 'var(--gradient-denser)',
       accentColor: '#06B6D4',
-      metrics: [
-        { value: '50+', label: t.projects.metrics.contributors },
-        { value: '2', label: t.projects.metrics.modules },
-      ],
+      surface: 'var(--surface-card)',
       highlights: [
         { label: t.projects.metrics.openSource, color: 'rgba(139, 92, 246, 0.15)' },
       ],
       meshBlobs: [
-        { color: 'rgba(139, 92, 246, 0.2)', position: 'top: -10%; left: -5%;', animation: 'meshFloat1 8s ease-in-out infinite' },
-        { color: 'rgba(6, 182, 212, 0.15)', position: 'bottom: 10%; right: -10%;', animation: 'meshFloat3 10s ease-in-out infinite' },
+        { color: 'rgba(0, 211, 242, 0.12)', position: 'top: -10%; left: -5%;' },
+        { color: 'rgba(198, 151, 254, 0.08)', position: 'bottom: 10%; right: -10%;' },
       ],
       links: [
         { label: 'GitHub', url: 'https://github.com/openhive-network/denser' },
@@ -130,16 +115,16 @@ const secondaryProjects: FeaturedProject[][] = [
       description: t.projects.descriptions.projectHub,
       tags: ['React 19', 'Zustand', 'DnD Kit', 'Recharts', 'Tailwind v4'],
       type: 'Full-Stack App',
-      gradient: 'linear-gradient(135deg, #F97316 0%, #EAB308 100%)',
+      gradient: 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%)',
       accentColor: '#F97316',
-      metrics: [],
+      surface: 'var(--surface-card)',
       highlights: [
         { label: t.projects.metrics.kanban, color: 'rgba(249, 115, 22, 0.15)' },
         { label: t.projects.metrics.roleSystem, color: 'rgba(234, 179, 8, 0.12)' },
       ],
       meshBlobs: [
-        { color: 'rgba(249, 115, 22, 0.2)', position: 'top: -10%; right: -5%;', animation: 'meshFloat2 10s ease-in-out infinite' },
-        { color: 'rgba(234, 179, 8, 0.12)', position: 'bottom: -15%; left: -10%;', animation: 'meshFloat3 12s ease-in-out infinite' },
+        { color: 'rgba(198, 151, 254, 0.12)', position: 'top: -10%; right: -5%;' },
+        { color: 'rgba(0, 211, 242, 0.10)', position: 'bottom: -15%; left: -10%;' },
       ],
       links: [
         { label: 'Live', url: 'https://projecthub.bard-dev.com', primary: true },
@@ -150,16 +135,16 @@ const secondaryProjects: FeaturedProject[][] = [
       description: t.projects.descriptions.stasiakOpal,
       tags: ['React 19', 'TanStack Router', 'Tailwind'],
       type: 'Client',
-      gradient: 'linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%)',
+      gradient: 'var(--gradient-denser)',
       accentColor: '#3B82F6',
-      metrics: [],
+      surface: 'var(--surface-card)',
       highlights: [
         { label: t.projects.metrics.clientProject, color: 'rgba(59, 130, 246, 0.15)' },
         { label: t.projects.metrics.seoOptimized, color: 'rgba(6, 182, 212, 0.12)' },
       ],
       meshBlobs: [
-        { color: 'rgba(59, 130, 246, 0.2)', position: 'top: -10%; left: -5%;', animation: 'meshFloat1 10s ease-in-out infinite' },
-        { color: 'rgba(6, 182, 212, 0.15)', position: 'bottom: -10%; right: -10%;', animation: 'meshFloat2 13s ease-in-out infinite' },
+        { color: 'rgba(0, 211, 242, 0.12)', position: 'top: -10%; left: -5%;' },
+        { color: 'rgba(198, 151, 254, 0.08)', position: 'bottom: -15%; right: -10%;' },
       ],
       links: [
         { label: 'Live', url: 'https://stasiak-opal.pl', primary: true },
@@ -169,7 +154,7 @@ const secondaryProjects: FeaturedProject[][] = [
 ];
 ---
 
-<section id="projects" class="py-20 lg:py-28" style="background: var(--color-bg-alt);">
+<section id="projects" class="section-surface-projects py-20 lg:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
     <!-- Header -->
     <div class="text-center mb-16">
@@ -177,12 +162,15 @@ const secondaryProjects: FeaturedProject[][] = [
       <h2 class="section-title">{t.projects.title}</h2>
     </div>
 
-    <!-- Hero Project (ConqSite) — full width -->
-    <article class="project-showcase animate-on-scroll mb-8 lg:mb-12" data-stagger-index={0}>
+    <!-- Hero Project (ConqSite — flagowy full-stack projekt) — full width -->
+    <article
+      class="project-showcase mb-8 lg:mb-12"
+      style={`--card-gradient: ${heroProject.gradient}; --card-accent: ${heroProject.accentColor}; --card-surface: ${heroProject.surface};`}
+    >
       <div class="showcase-accent" style={`background: ${heroProject.gradient};`} aria-hidden="true"></div>
       {heroProject.meshBlobs.map((blob) => (
         <div class="mesh-blob" aria-hidden="true"
-          style={`background: radial-gradient(ellipse, ${blob.color}, transparent 70%); ${blob.position} animation: ${blob.animation};`}
+          style={`background: radial-gradient(circle closest-side, ${blob.color}, transparent); ${blob.position}`}
         ></div>
       ))}
       <div class="relative z-10 grid lg:grid-cols-[1fr_220px] gap-8 lg:gap-12 p-8 sm:p-10 lg:p-12">
@@ -202,15 +190,10 @@ const secondaryProjects: FeaturedProject[][] = [
                       ? `${t.projects.viewProject} — ${heroProject.title} (${link.label})`
                       : `${t.projects.viewProject} — ${heroProject.title}`)
                   : `${link.label} — ${heroProject.title}`}
-                class={`inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
-                  link.primary
-                    ? 'text-[--color-text] hover:text-[--color-primary] hover:border-[--color-primary]'
-                    : 'text-[--color-text-muted] hover:text-[--color-text]'
-                }`}
-                style={link.primary ? 'border-color: var(--color-border-hover);' : 'border-color: var(--color-border);'}
+                class={`showcase-link text-sm px-4 py-2 ${link.primary ? 'showcase-link-primary' : ''}`}
               >
-                {link.primary ? t.projects.viewProject : link.label}
-                <span class="text-xs" aria-hidden="true">&nearr;</span>
+                {link.primary && link.label === 'Live' ? t.projects.viewProject : link.label}
+                <span class="link-arrow" aria-hidden="true">&nearr;</span>
               </a>
             ))}
           </div>
@@ -223,12 +206,6 @@ const secondaryProjects: FeaturedProject[][] = [
           </div>
         </div>
         <div class="flex flex-row lg:flex-col gap-6 lg:gap-8 lg:border-l lg:pl-8" style="border-color: var(--color-border);">
-          {heroProject.metrics.map((metric) => (
-            <div>
-              <div class="metric-number" style={`color: ${heroProject.accentColor};`}>{metric.value}</div>
-              <div class="metric-label">{metric.label}</div>
-            </div>
-          ))}
           {heroProject.highlights.map((highlight) => (
             <div>
               <span class="metric-tag" style={`background: ${highlight.color}; color: var(--color-text);`}>
@@ -241,14 +218,17 @@ const secondaryProjects: FeaturedProject[][] = [
     </article>
 
     <!-- Secondary Projects — 2-column grid rows -->
-    {secondaryProjects.map((row, rowIndex) => (
+    {secondaryProjects.map((row) => (
       <div class="grid md:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-12">
-        {row.map((project, colIndex) => (
-          <article class="project-showcase project-showcase-compact animate-on-scroll" data-stagger-index={rowIndex * 2 + colIndex + 1}>
+        {row.map((project) => (
+          <article
+            class="project-showcase project-showcase-compact"
+            style={`--card-gradient: ${project.gradient}; --card-accent: ${project.accentColor}; --card-surface: ${project.surface};`}
+          >
             <div class="showcase-accent" style={`background: ${project.gradient};`} aria-hidden="true"></div>
             {project.meshBlobs.map((blob) => (
               <div class="mesh-blob" aria-hidden="true"
-                style={`background: radial-gradient(ellipse, ${blob.color}, transparent 70%); ${blob.position} animation: ${blob.animation};`}
+                style={`background: radial-gradient(circle closest-side, ${blob.color}, transparent); ${blob.position}`}
               ></div>
             ))}
             <div class="relative z-10 p-6 lg:p-8">
@@ -260,28 +240,16 @@ const secondaryProjects: FeaturedProject[][] = [
                 {project.description}
               </p>
 
-              <!-- Metrics -->
-              {(project.metrics.length > 0 || project.highlights.length > 0) && (
+              <!-- Highlights -->
+              {project.highlights.length > 0 && (
                 <div class="flex flex-col gap-3 mb-4">
-                  {project.metrics.length > 0 && (
-                    <div class="flex flex-wrap gap-6">
-                      {project.metrics.map((metric) => (
-                        <div>
-                          <span class="metric-number-compact" style={`color: ${project.accentColor};`}>{metric.value}</span>
-                          <span class="text-xs ml-1.5" style="color: var(--color-text-muted);">{metric.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  {project.highlights.length > 0 && (
-                    <div class="flex flex-wrap gap-2">
-                      {project.highlights.map((highlight) => (
-                        <span class="metric-tag" style={`background: ${highlight.color}; color: var(--color-text);`}>
-                          {highlight.label}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <div class="flex flex-wrap gap-2">
+                    {project.highlights.map((highlight) => (
+                      <span class="metric-tag" style={`background: ${highlight.color}; color: var(--color-text);`}>
+                        {highlight.label}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
 
@@ -295,15 +263,10 @@ const secondaryProjects: FeaturedProject[][] = [
                             ? `${t.projects.viewProject} — ${project.title} (${link.label})`
                             : `${t.projects.viewProject} — ${project.title}`)
                         : `${link.label} — ${project.title}`}
-                      class={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 border ${
-                        link.primary
-                          ? 'text-[--color-text] hover:text-[--color-primary] hover:border-[--color-primary]'
-                          : 'text-[--color-text-muted] hover:text-[--color-text]'
-                      }`}
-                      style={link.primary ? 'border-color: var(--color-border-hover);' : 'border-color: var(--color-border);'}
+                      class={`showcase-link text-xs px-3 py-1.5 ${link.primary ? 'showcase-link-primary' : ''}`}
                     >
-                      {link.primary ? t.projects.viewProject : link.label}
-                      <span class="text-[10px]" aria-hidden="true">&nearr;</span>
+                      {link.primary && link.label === 'Live' ? t.projects.viewProject : link.label}
+                      <span class="link-arrow" aria-hidden="true">&nearr;</span>
                     </a>
                   ))}
                 </div>
@@ -325,7 +288,7 @@ const secondaryProjects: FeaturedProject[][] = [
 
     <!-- CTA -->
     <div class="text-center mt-4">
-      <a href="https://github.com/KKocot" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <a href="https://bard-dev.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
         {t.projects.viewAll}
       </a>
     </div>

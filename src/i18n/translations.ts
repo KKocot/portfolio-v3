@@ -45,19 +45,14 @@ export interface Translations {
   projects: {
     tag: string;
     title: string;
+    featured: string;
     viewProject: string;
     viewAll: string;
-    otherTitle: string;
     metrics: {
-      contributors: string;
-      modules: string;
-      pages: string;
       openSource: string;
       canvasEditor: string;
       worldMap: string;
       premiumSystem: string;
-      appsServed: string;
-      apiModules: string;
       aiPowered: string;
       kanban: string;
       roleSystem: string;
@@ -146,7 +141,8 @@ export const translations: Record<Language, Translations> = {
       title: "Passion for creating\ndigital solutions",
       lead: "I'm a Full-Stack Developer with over 3 years of commercial experience. I independently design and build complete web and mobile applications — from database to UI.",
       text: [
-        "With AI-powered systems I've built into my workflow, I deliver projects faster and at a higher quality than traditional development allows. Claude, Gemini, and custom automation handle the repetitive work — I focus on architecture, business logic, and the details that make software feel great.",
+        "AI is part of my daily workflow — projects ship faster and cost less. The results: a backend powering 8 applications, an open-source project with 50+ contributors.",
+        "You work with one person from idea to launch. After deployment I stay on board — maintenance and growth included.",
       ],
       whyMe: {
         fast: {
@@ -181,19 +177,14 @@ export const translations: Record<Language, Translations> = {
     projects: {
       tag: "Projects",
       title: "Selected works",
+      featured: "Featured project",
       viewProject: "View project",
-      viewAll: "View all projects on GitHub",
-      otherTitle: "Other projects",
+      viewAll: "View all projects",
       metrics: {
-        contributors: "contributors",
-        modules: "modules",
-        pages: "pages",
         openSource: "Open Source",
         canvasEditor: "Canvas Map Editor",
         worldMap: "Interactive World Map",
         premiumSystem: "Premium System",
-        appsServed: "apps powered",
-        apiModules: "API modules",
         aiPowered: "AI Powered",
         kanban: "Kanban + Calendar",
         roleSystem: "Role System",
@@ -204,11 +195,11 @@ export const translations: Record<Language, Translations> = {
         denser:
           "Decentralized social media frontend for Hive Blockchain. Successor to hive.blog with blog and wallet modules.",
         conqsite:
-          "Full-featured guild management platform for Conqueror's Blade community. Interactive arena map editor built on Canvas, world map with territory tracking, unit and lineup builder, guild wiki, member dashboard with statistics, premium coin system, and in-app chat — all with Discord authentication.",
+          "Community management platform: 20+ pages, a custom canvas map editor, and an interactive world map with territory tracking. Built end-to-end — from Discord login to a premium coin system.",
         elysiaBackend:
           "Monolithic backend powering 8 applications. 11 API modules covering auth, AI generation, real-time sync, scraping, and payment systems.",
         stasiakOpal:
-          "Commercial landing page for a local business. Built with React 19 and TanStack Router, optimized for Core Web Vitals and local SEO.",
+          "Commercial website for a local fuel supplier. Product catalog with live pricing, API-backed contact form, and local SEO that brings customers from Google.",
         projectHub:
           "Task management app with kanban boards, calendar view, role-based permissions, Telegram notifications, and real-time charts.",
       },
@@ -313,7 +304,8 @@ export const translations: Record<Language, Translations> = {
       title: "Pasja do tworzenia\ncyfrowych rozwiązań",
       lead: "Jestem Full-Stack Developerem z ponad 3-letnim doświadczeniem komercyjnym. Samodzielnie projektuję i buduję kompletne aplikacje webowe i mobilne — od bazy danych po UI.",
       text: [
-        "Dzięki systemom AI, które wbudowałem w swój workflow, dostarczam projekty szybciej i na wyższym poziomie niż pozwala tradycyjny development. Claude, Gemini i własne automatyzacje zajmują się powtarzalną pracą — ja skupiam się na architekturze, logice biznesowej i detalach, które sprawiają, że oprogramowanie robi wrażenie.",
+        "AI to część mojego codziennego workflow — projekty powstają szybciej i kosztują mniej. Efekty: backend zasilający 8 aplikacji, projekt open source z 50+ kontrybutorami.",
+        "Od pomysłu do wdrożenia pracujesz z jedną osobą. Po starcie zostaję na pokładzie — utrzymanie i rozwój w pakiecie.",
       ],
       whyMe: {
         fast: {
@@ -348,19 +340,14 @@ export const translations: Record<Language, Translations> = {
     projects: {
       tag: "Projekty",
       title: "Wybrane realizacje",
+      featured: "Flagowy projekt",
       viewProject: "Zobacz projekt",
-      viewAll: "Zobacz wszystkie projekty na GitHub",
-      otherTitle: "Inne projekty",
+      viewAll: "Zobacz wszystkie projekty",
       metrics: {
-        contributors: "kontrybutorów",
-        modules: "moduły",
-        pages: "stron",
         openSource: "Open Source",
         canvasEditor: "Edytor map Canvas",
         worldMap: "Interaktywna mapa świata",
         premiumSystem: "System premium",
-        appsServed: "zasilanych aplikacji",
-        apiModules: "modułów API",
         aiPowered: "AI Powered",
         kanban: "Kanban + Kalendarz",
         roleSystem: "System ról",
@@ -371,11 +358,11 @@ export const translations: Record<Language, Translations> = {
         denser:
           "Frontend zdecentralizowanych mediów społecznościowych dla Hive Blockchain. Następca hive.blog z modułami blog i wallet.",
         conqsite:
-          "Rozbudowana platforma do zarządzania gildią w Conqueror's Blade. Interaktywny edytor map aren na Canvas, mapa świata ze śledzeniem terytoriów, kreator jednostek i składów, wiki gildii, dashboard z statystykami, system premium z walutą, czat gildyjny — wszystko z autoryzacją przez Discord.",
+          "Platforma do zarządzania społecznością: 20+ podstron, autorski edytor map na canvasie i interaktywna mapa świata ze śledzeniem terytoriów. Całość od A do Z — od logowania przez Discord po system monet premium.",
         elysiaBackend:
           "Monolityczny backend zasilający 8 aplikacji. 11 modułów API obejmujących autoryzację, generowanie AI, synchronizację real-time, scraping i systemy płatności.",
         stasiakOpal:
-          "Komercyjna strona internetowa lokalnej firmy. Zbudowana w React 19 z TanStack Router, zoptymalizowana pod Core Web Vitals i lokalne SEO.",
+          "Komercyjna strona dla lokalnego dostawcy opału. Katalog produktów z aktualnym cennikiem, formularz spięty z API i lokalne SEO, które przyprowadza klientów z Google.",
         projectHub:
           "Aplikacja do zarządzania zadaniami z tablicami kanban, widokiem kalendarza, uprawnieniami opartymi na rolach, powiadomieniami Telegram i wykresami w czasie rzeczywistym.",
       },

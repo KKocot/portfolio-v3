@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="eb-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0f0f1a"/>
+    </linearGradient>
+    <linearGradient id="eb-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#eb-bg)"/>
+  <!-- Subtle Elysia silhouette ghost in background -->
+  <g transform="translate(60, 30) scale(0.1)" opacity="0.08">
+    <path d="M424.404 470.816C478.089 423.889 512 354.905 512 278C512 136.615 397.385 22 256 22C114.615 22 0 136.615 0 278C0 352.658 31.9583 419.851 82.9409 466.646L83.1767 465L419.144 355L424.404 470.816Z" fill="white"/>
+    <path d="M202.776 219.428L72.2905 452.693C71.643 453.851 70.0687 454.069 69.1308 453.131L66.5 450.5L55.5 438L48.4888 428.927C41.8407 420.323 35.9052 411.192 30.7414 401.624L29.7434 399.775C24.2581 389.611 19.6635 378.991 16.0112 368.034L12.5 357.5C7.22519 338.379 6.01447 318.365 8.94583 298.747L9.06961 297.919C10.354 289.323 12.4034 280.86 15.1935 272.629L21 255.5L25.3334 246.385C32.0537 232.249 41.3193 219.472 52.6669 208.691L58.1719 203.462C69.5529 192.65 83.3937 184.769 98.5 180.5L55.5002 184.5L59.5273 182.57C72.5066 176.351 83.1766 166.172 90 153.5L94.4475 146.562C99.7511 138.288 106.807 131.28 115.116 126.032L116.833 124.948C119.935 122.989 123.246 121.384 126.705 120.163L142.446 114.607C145.348 113.583 147.69 111.39 148.903 108.561L149.143 108C149.705 106.687 149.932 105.255 149.803 103.833L126 71.5L111.803 51.9315C108.994 48.0592 107.359 43.4599 107.094 38.6832C107.051 37.9263 107.836 37.4015 108.52 37.7295L123.881 45.1028C137.174 51.4834 152.33 52.825 166.537 48.8786C169.84 47.9612 173.214 47.3242 176.624 46.9745L183.675 46.2513C201.406 44.4328 219.32 45.9054 236.516 50.5953L238 51L254.798 57.0472C275.869 64.6329 292.567 81.0571 300.5 102L304.022 115.734C305.004 119.567 306.392 123.285 308.162 126.824C312.321 135.142 318.495 142.289 326.121 147.613L335.084 153.87C339.023 156.62 343.157 159.078 347.453 161.227L367.289 171.145C368.178 171.589 368.444 172.732 367.843 173.523C362.372 180.721 355.148 186.395 346.859 190.005L335.371 195.008C330.797 197 326.081 198.65 321.262 199.945L312.822 202.212C300.992 205.39 288.796 207 276.546 207H256.333C252.148 207 248.001 206.213 244.108 204.679C228.581 198.562 210.923 204.863 202.776 219.428Z" fill="white"/>
+  </g>
+  <!-- Main: API endpoint brackets -->
+  <text x="16" y="46" font-family="monospace" font-size="28" font-weight="bold" fill="url(#eb-purple)">{</text>
+  <text x="96" y="46" font-family="monospace" font-size="28" font-weight="bold" fill="url(#eb-purple)">}</text>
+  <!-- Route lines -->
+  <rect x="32" y="32" width="8" height="3" rx="1.5" fill="#22c55e"/>
+  <rect x="44" y="32" width="32" height="3" rx="1.5" fill="#475569"/>
+  <!-- API paths -->
+  <g opacity="0.9">
+    <rect x="28" y="52" width="72" height="14" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="34" y="62" font-family="monospace" font-size="8" fill="#22c55e">GET</text>
+    <rect x="54" y="57" width="40" height="4" rx="2" fill="#334155"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="28" y="70" width="72" height="14" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="34" y="80" font-family="monospace" font-size="8" fill="#3b82f6">POST</text>
+    <rect x="58" y="75" width="36" height="4" rx="2" fill="#334155"/>
+  </g>
+  <g opacity="0.9">
+    <rect x="28" y="88" width="72" height="14" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="34" y="98" font-family="monospace" font-size="8" fill="#f59e0b">PUT</text>
+    <rect x="54" y="93" width="40" height="4" rx="2" fill="#334155"/>
+  </g>
+  <!-- Bun dot -->
+  <circle cx="98" cy="112" r="5" fill="#fbbd23" opacity="0.6"/>
+  <!-- Connection dots -->
+  <circle cx="18" cy="59" r="3" fill="#a78bfa" opacity="0.5"/>
+  <circle cx="18" cy="77" r="3" fill="#a78bfa" opacity="0.4"/>
+  <circle cx="18" cy="95" r="3" fill="#a78bfa" opacity="0.3"/>
+  <line x1="21" y1="59" x2="28" y2="59" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+  <line x1="21" y1="77" x2="28" y2="77" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+  <line x1="21" y1="95" x2="28" y2="95" stroke="#a78bfa" stroke-width="1" opacity="0.2"/>
+</svg>
