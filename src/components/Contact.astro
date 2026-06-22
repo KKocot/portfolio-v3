@@ -1,7 +1,6 @@
 ---
 import type { Translations, Language } from '../i18n';
-import IconGithub from './icons/IconGithub.astro';
-import IconLinkedin from './icons/IconLinkedin.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   t: Translations;
@@ -23,22 +22,17 @@ const socialLinks = [
   },
 ];
 
-const iconComponents = {
-  github: IconGithub,
-  linkedin: IconLinkedin,
-};
-
 const toastMessages = {
   success: t.contact.toast.success,
   error: t.contact.toast.error,
 };
 ---
 
-<section id="contact" class="py-20 lg:py-28">
+<section id="contact" class="section-surface-contact py-20 lg:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
       <!-- Info -->
-      <div class="animate-on-scroll flex flex-col justify-start">
+      <div class="flex flex-col justify-start">
         <span class="section-tag">{t.contact.tag}</span>
         <h2 class="section-title mb-6 whitespace-pre-line">{t.contact.title}</h2>
 
@@ -50,11 +44,11 @@ const toastMessages = {
         <div class="space-y-4 mb-8">
           <a
             href={`mailto:${contact.email}`}
-            class="flex items-center gap-4 transition-colors group"
-            style="color: var(--color-text-muted);"
+            class="contact-method flex items-center gap-4 transition-colors group"
+            style="--item-color: var(--color-primary); color: var(--color-text-muted);"
           >
-            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
-              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: color-mix(in srgb, var(--item-color) 18%, transparent); border: 1px solid color-mix(in srgb, var(--item-color) 42%, transparent);">
+              <svg class="w-5 h-5" style="color: var(--item-color);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </svg>
@@ -66,11 +60,11 @@ const toastMessages = {
             href={`https://${contact.website}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-4 transition-colors group"
-            style="color: var(--color-text-muted);"
+            class="contact-method flex items-center gap-4 transition-colors group"
+            style="--item-color: var(--color-accent); color: var(--color-text-muted);"
           >
-            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
-              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: color-mix(in srgb, var(--item-color) 18%, transparent); border: 1px solid color-mix(in srgb, var(--item-color) 42%, transparent);">
+              <svg class="w-5 h-5" style="color: var(--item-color);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="2" y1="12" x2="22" y2="12"></line>
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -79,9 +73,9 @@ const toastMessages = {
             <span class="group-hover:text-[--color-primary] transition-colors">{contact.website}</span>
           </a>
 
-          <div class="flex items-center gap-4" style="color: var(--color-text-muted);">
-            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
-              <svg class="w-5 h-5" style="color: var(--color-text-muted);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <div class="contact-method flex items-center gap-4" style="--item-color: var(--color-primary); color: var(--color-text-muted);">
+            <span class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: color-mix(in srgb, var(--item-color) 18%, transparent); border: 1px solid color-mix(in srgb, var(--item-color) 42%, transparent);">
+              <svg class="w-5 h-5" style="color: var(--item-color);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -92,20 +86,17 @@ const toastMessages = {
 
         <!-- Social Links -->
         <div class="flex gap-4">
-          {socialLinks.map((link) => {
-            const IconComponent = iconComponents[link.icon];
-            return (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.name}
-                class="w-11 h-11 flex items-center justify-center rounded-full transition-all duration-200 hover:-translate-y-0.5 social-link-hover"
-              >
-                <IconComponent class="w-5 h-5" />
-              </a>
-            );
-          })}
+          {socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.name}
+              class="w-11 h-11 flex items-center justify-center rounded-full transition-[transform,color,border-color] duration-150 ease-out hover:-translate-y-0.5 social-link-hover"
+            >
+              <Icon name={link.icon} class="w-5 h-5" aria-hidden="true" />
+            </a>
+          ))}
         </div>
 
         <!-- Quick Reply -->
@@ -117,8 +108,8 @@ const toastMessages = {
       <!-- Form -->
       <form
         id="contact-form"
-        class="p-8 rounded-2xl animate-on-scroll"
-        style="background: var(--color-bg-card); border: 1px solid var(--color-border);"
+        class="contact-form-card p-8 rounded-2xl"
+        style="--item-color: var(--color-primary);"
         data-success-message={toastMessages.success}
         data-error-message={toastMessages.error}
       >
@@ -165,6 +156,17 @@ const toastMessages = {
           <span id="submit-text">{t.contact.form.submit}</span>
           <span id="submit-loading" class="hidden">{t.contact.form.sending}</span>
         </button>
+
+        <p
+          id="form-error"
+          role="alert"
+          class="hidden mt-4 text-sm rounded-lg px-4 py-3"
+          style="color: var(--color-text); border: 1px solid color-mix(in srgb, var(--color-error) 45%, transparent); background: color-mix(in srgb, var(--color-error) 16%, transparent);"
+        >
+          {t.contact.toast.error}
+          {' '}
+          <a href={`mailto:${contact.email}`} class="underline" style="color: var(--color-text);">{contact.email}</a>
+        </p>
       </form>
     </div>
   </div>
@@ -208,8 +210,12 @@ const toastMessages = {
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
     const submitText = document.getElementById('submit-text');
     const submitLoading = document.getElementById('submit-loading');
+    const formError = document.getElementById('form-error');
 
     if (!form || !submitBtn || !submitText || !submitLoading) return;
+
+    const showFormError = () => formError?.classList.remove('hidden');
+    const hideFormError = () => formError?.classList.add('hidden');
 
     // Prevent multiple bindings
     if (formInitialized && form.dataset.initialized === 'true') return;
@@ -227,9 +233,12 @@ const toastMessages = {
       const email = formData.get('email');
       const message = formData.get('message');
 
+      hideFormError();
+
       // Validate form data exists
       if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
         showToast(errorMessage, 'error');
+        showFormError();
         return;
       }
 
@@ -248,9 +257,11 @@ const toastMessages = {
           form.reset();
         } else {
           showToast(errorMessage, 'error');
+          showFormError();
         }
       } catch {
         showToast(errorMessage, 'error');
+        showFormError();
       } finally {
         // Reset button state
         submitBtn.disabled = false;

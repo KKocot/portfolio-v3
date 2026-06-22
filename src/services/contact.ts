@@ -49,7 +49,8 @@ export async function sendContactForm(data: ContactFormData): Promise<ContactRes
     });
 
     if (!response.ok) {
-      throw new Error('Failed to send message');
+      // Without PUBLIC_API_URL the '/api' fallback returns 404 on a static host
+      throw new Error(`Contact API request failed with status ${response.status}`);
     }
 
     return { success: true };
