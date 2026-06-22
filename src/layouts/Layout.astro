@@ -1,12 +1,21 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
 import type { Language } from '../i18n';
+import portraitSrc from '../assets/portrait.jpg';
+import {
+  PORTRAIT_WIDTHS,
+  PORTRAIT_SIZES,
+  PORTRAIT_FORMAT,
+  PORTRAIT_QUALITY,
+} from '../lib/portrait';
 
 interface Props {
   title: string;
   description?: string;
   lang?: Language;
   pathname?: string;
+  ogImageAlt?: string;
 }
 
 const {
@@ -14,12 +23,24 @@ const {
   description = 'Full-Stack Developer & Freelancer from Katowice. I specialize in Next.js, React, TypeScript and Node.js.',
   lang = 'en',
   pathname,
+  ogImageAlt = 'Portrait of Krzysztof Kocot, Full-Stack Developer from Katowice',
 } = Astro.props;
 
 const siteUrl = 'https://kkocot.dev';
 const resolvedPathname = pathname ?? Astro.url.pathname;
 const canonicalUrl = new URL(resolvedPathname, siteUrl).href;
 const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
+const ogImageUrl = new URL('/og-image.jpg', siteUrl).href;
+
+// LCP preload: same source + params as Hero.astro <Image> (shared via lib/portrait)
+// so the preload srcset URLs are identical to the rendered <img> srcset.
+const portraitPreload = await getImage({
+  src: portraitSrc,
+  widths: PORTRAIT_WIDTHS,
+  sizes: PORTRAIT_SIZES,
+  format: PORTRAIT_FORMAT,
+  quality: PORTRAIT_QUALITY,
+});
 ---
 
 <!doctype html>
@@ -29,11 +50,21 @@ const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Krzysztof Kocot" />
-    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="theme-color" content="#001B15" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+    <!-- LCP preload: hero portrait. href is the fallback candidate; imagesrcset
+         matches the rendered Hero.astro <Image> candidates. -->
+    <link
+      rel="preload"
+      as="image"
+      href={portraitPreload.src}
+      imagesrcset={portraitPreload.srcSet.attribute}
+      imagesizes={PORTRAIT_SIZES}
+      fetchpriority="high"
+    />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={`${siteUrl}/`} />
     <link rel="alternate" hreflang="pl" href={`${siteUrl}/pl/`} />
@@ -45,6 +76,17 @@ const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <title>{title}</title>
   </head>
@@ -100,72 +142,37 @@ const ogLocale = lang === 'pl' ? 'pl_PL' : 'en_US';
         });
       });
 
-      // Scroll animations — inline styles instead of Tailwind classes
-      // (Tailwind 4 does not compile classes added dynamically via classList)
-      const observerOptions = { root: null, rootMargin: '0px 0px -80px 0px', threshold: 0.01 };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const target = entry.target as HTMLElement;
-            // Stagger support
-            if (target.dataset.staggerIndex) {
-              const delay = parseInt(target.dataset.staggerIndex) * 80;
-              target.style.transitionDelay = `${delay}ms`;
-            }
-            target.style.opacity = '1';
-            target.style.transform = 'translateY(0)';
-            observer.unobserve(target);
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll<HTMLElement>('.animate-on-scroll').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(2rem)';
-        el.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        observer.observe(el);
-      });
-
-      // Scroll spy for nav highlighting
-      const sections = document.querySelectorAll('section[id]');
+      // Scroll spy for nav highlighting — IntersectionObserver instead of a scroll
+      // listener reading offsetTop/offsetHeight on every frame (layout thrashing)
       const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
       const desktopNavLinks = document.querySelectorAll('.nav-link[data-section]');
 
-      function updateActiveNav() {
-        const scrollY = window.scrollY + 100;
-
-        let currentSection = '';
-        sections.forEach(section => {
-          const sectionTop = (section as HTMLElement).offsetTop;
-          const sectionHeight = (section as HTMLElement).offsetHeight;
-          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            currentSection = section.getAttribute('id') || '';
-          }
-        });
-
-        // Update mobile nav
+      function setActiveNav(currentSection: string) {
         mobileNavLinks.forEach(link => {
-          const section = link.getAttribute('data-section');
-          if (section === currentSection) {
-            (link as HTMLElement).style.color = 'var(--color-primary)';
-          } else {
-            (link as HTMLElement).style.color = 'var(--color-text-muted)';
-          }
+          const isActive = link.getAttribute('data-section') === currentSection;
+          (link as HTMLElement).style.color = isActive
+            ? 'var(--color-primary)'
+            : 'var(--color-text-muted)';
         });
 
-        // Update desktop nav
         desktopNavLinks.forEach(link => {
-          const section = link.getAttribute('data-section');
-          if (section === currentSection) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
+          link.classList.toggle('active', link.getAttribute('data-section') === currentSection);
         });
       }
 
-      window.addEventListener('scroll', updateActiveNav);
-      updateActiveNav();
+      // Active = section crossing the band between 100px from the top and 35% of
+      // the viewport (mirrors the previous scrollY + 100 heuristic)
+      const scrollSpyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveNav(entry.target.id);
+          }
+        });
+      }, { rootMargin: '-100px 0px -65% 0px', threshold: 0 });
+
+      document.querySelectorAll('section[id]').forEach(section => {
+        scrollSpyObserver.observe(section);
+      });
     </script>
   </body>
 </html>
