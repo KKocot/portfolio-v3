@@ -12,26 +12,30 @@ const whyMeItems = [
     title: t.about.whyMe.fast.title,
     desc: t.about.whyMe.fast.desc,
     icon: 'clock',
+    color: 'var(--color-primary)',
   },
   {
     title: t.about.whyMe.fullService.title,
     desc: t.about.whyMe.fullService.desc,
     icon: 'layers',
+    color: 'var(--color-primary)',
   },
   {
     title: t.about.whyMe.transparent.title,
     desc: t.about.whyMe.transparent.desc,
     icon: 'tag',
+    color: 'var(--color-accent)',
   },
   {
     title: t.about.whyMe.support.title,
     desc: t.about.whyMe.support.desc,
     icon: 'refresh',
+    color: 'var(--color-accent)',
   },
 ];
 ---
 
-<section id="about" class="py-20 lg:py-28" style="background: var(--color-bg-alt);">
+<section id="about" class="section-surface-about py-20 lg:py-28">
   <div class="max-w-[1200px] mx-auto px-6">
     <!-- Header -->
     <div class="text-center mb-16">
@@ -42,7 +46,7 @@ const whyMeItems = [
     <!-- Content -->
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
       <!-- Text -->
-      <div class="animate-on-scroll">
+      <div>
         <p class="text-xl font-medium mb-6" style="color: var(--color-text);">
           {t.about.lead}
         </p>
@@ -53,32 +57,32 @@ const whyMeItems = [
       </div>
 
       <!-- Why Me Bullets -->
-      <div class="animate-on-scroll">
+      <div>
         <div class="grid sm:grid-cols-2 gap-4">
           {whyMeItems.map((item) => (
-            <div class="flex gap-3 items-start p-4 rounded-xl" style="background: var(--color-bg-card); border: 1px solid var(--color-border);">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: var(--color-primary-muted);">
+            <div class="about-trust-card flex gap-3 items-start p-4 rounded-xl" style={`--item-color: ${item.color};`}>
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={`background: color-mix(in srgb, ${item.color} 18%, transparent); border: 1px solid color-mix(in srgb, ${item.color} 42%, transparent);`}>
                 {item.icon === 'clock' && (
-                  <svg class="w-4 h-4" style="color: var(--color-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-4 h-4" style={`color: ${item.color};`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
                 )}
                 {item.icon === 'layers' && (
-                  <svg class="w-4 h-4" style="color: var(--color-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-4 h-4" style={`color: ${item.color};`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                     <polyline points="2 17 12 22 22 17"></polyline>
                     <polyline points="2 12 12 17 22 12"></polyline>
                   </svg>
                 )}
                 {item.icon === 'tag' && (
-                  <svg class="w-4 h-4" style="color: var(--color-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-4 h-4" style={`color: ${item.color};`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="1" x2="12" y2="23"></line>
                     <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                   </svg>
                 )}
                 {item.icon === 'refresh' && (
-                  <svg class="w-4 h-4" style="color: var(--color-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="w-4 h-4" style={`color: ${item.color};`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4.03 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4.03-3-9s1.34-9 3-9"></path>
                   </svg>
                 )}

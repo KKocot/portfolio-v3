@@ -9,17 +9,24 @@ interface Props {
 const { t } = Astro.props;
 
 const colorMap: Record<string, { color: string; bg: string; border: string; glow: string }> = {
-  blue:   { color: '#3B82F6', bg: 'rgba(59,130,246,0.08)',  border: 'rgba(59,130,246,0.25)',  glow: '0 0 16px rgba(59,130,246,0.12)' },
-  green:  { color: '#10B981', bg: 'rgba(16,185,129,0.08)',  border: 'rgba(16,185,129,0.25)',  glow: '0 0 16px rgba(16,185,129,0.12)' },
-  purple: { color: '#8B5CF6', bg: 'rgba(139,92,246,0.08)',  border: 'rgba(139,92,246,0.25)',  glow: '0 0 16px rgba(139,92,246,0.12)' },
-  orange: { color: '#F97316', bg: 'rgba(249,115,22,0.08)',  border: 'rgba(249,115,22,0.25)',  glow: '0 0 16px rgba(249,115,22,0.12)' },
-  cyan:   { color: '#06B6D4', bg: 'rgba(6,182,212,0.08)',   border: 'rgba(6,182,212,0.25)',   glow: '0 0 16px rgba(6,182,212,0.12)' },
+  primary: {
+    color: 'var(--color-primary)',
+    bg: 'color-mix(in srgb, var(--color-primary) 14%, transparent)',
+    border: 'color-mix(in srgb, var(--color-primary) 42%, transparent)',
+    glow: '0 0 0 1px rgba(0, 211, 242, 0.16), 0 8px 18px rgba(0, 211, 242, 0.08)',
+  },
+  accent: {
+    color: 'var(--color-accent)',
+    bg: 'color-mix(in srgb, var(--color-accent) 14%, transparent)',
+    border: 'color-mix(in srgb, var(--color-accent) 42%, transparent)',
+    glow: '0 0 0 1px rgba(198, 151, 254, 0.16), 0 8px 18px rgba(198, 151, 254, 0.08)',
+  },
 };
 
 const skillCategories = [
   {
     title: t.skills.categories.frontend,
-    color: "blue",
+    color: "primary",
     position: "left-top",
     skills: [
       { icon: "simple-icons:react", name: "React" },
@@ -33,7 +40,7 @@ const skillCategories = [
   },
   {
     title: t.skills.categories.backend,
-    color: "green",
+    color: "primary",
     position: "right-top",
     skills: [
       { icon: "simple-icons:nodedotjs", name: "Node.js" },
@@ -49,7 +56,7 @@ const skillCategories = [
   },
   {
     title: t.skills.categories.mobile,
-    color: "purple",
+    color: "accent",
     position: "left-bottom",
     skills: [
       { icon: "simple-icons:react", name: "React Native" },
@@ -61,7 +68,7 @@ const skillCategories = [
   },
   {
     title: t.skills.categories.devops,
-    color: "orange",
+    color: "accent",
     position: "center-bottom",
     skills: [
       { icon: "simple-icons:docker", name: "Docker" },
@@ -75,7 +82,7 @@ const skillCategories = [
   },
   {
     title: t.skills.categories.ai,
-    color: "cyan",
+    color: "primary",
     position: "right-bottom",
     skills: [
       { icon: "claude-code", name: "Claude" },
@@ -101,9 +108,9 @@ const skillCategories = [
       <!-- LEFT column (desktop) -->
       <div class="skills-orbital__left">
         {skillCategories.filter(c => c.position.startsWith('left')).map((category, i) => {
-          const colors = colorMap[category.color] ?? colorMap['blue'];
+          const colors = colorMap[category.color] ?? colorMap.primary;
           return (
-            <div class="skill-group skill-animate" data-group-index={i}>
+            <div class="skill-group">
               <h3 class="sr-only">{category.title}</h3>
               <div class="flex items-center gap-2 mb-3">
                 <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
@@ -130,9 +137,9 @@ const skillCategories = [
       <!-- RIGHT column (desktop) -->
       <div class="skills-orbital__right">
         {skillCategories.filter(c => c.position.startsWith('right')).map((category, i) => {
-          const colors = colorMap[category.color] ?? colorMap['blue'];
+          const colors = colorMap[category.color] ?? colorMap.primary;
           return (
-            <div class="skill-group skill-animate" data-group-index={i === 0 ? 1 : 4}>
+            <div class="skill-group">
               <h3 class="sr-only">{category.title}</h3>
               <div class="flex items-center gap-2 mb-3">
                 <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
@@ -158,10 +165,10 @@ const skillCategories = [
 
       <!-- BOTTOM CENTER: DevOps -->
       {skillCategories.filter(c => c.position === 'center-bottom').map((category) => {
-        const colors = colorMap[category.color] ?? colorMap['blue'];
+        const colors = colorMap[category.color] ?? colorMap.primary;
         return (
           <div class="skills-orbital__bottom">
-            <div class="skill-group skill-animate" data-group-index={3}>
+            <div class="skill-group">
               <h3 class="sr-only">{category.title}</h3>
               <div class="flex items-center gap-2 mb-3">
                 <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style={`background: ${colors.color}`}></span>
@@ -187,46 +194,4 @@ const skillCategories = [
 
     </div>
   </div>
-
-  <noscript>
-    <style>
-      .skill-animate { opacity: 1 !important; transform: none !important; }
-    </style>
-  </noscript>
 </section>
-
-<script>
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const skillObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const groups = entry.target.querySelectorAll('.skill-group.skill-animate');
-
-          if (prefersReducedMotion) {
-            groups.forEach((group) => group.classList.add('is-visible'));
-          } else {
-            groups.forEach((group) => {
-              const el = group as HTMLElement;
-              const groupIndex = parseInt(el.dataset.groupIndex || '0');
-              const delay = groupIndex * 100;
-              setTimeout(() => el.classList.add('is-visible'), delay);
-            });
-          }
-
-          skillObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: '0px 0px -60px 0px', threshold: 0.01 },
-  );
-
-  const orbital = document.querySelector('.skills-orbital');
-  if (orbital) skillObserver.observe(orbital);
-
-  // Cleanup for View Transitions
-  document.addEventListener('astro:before-swap', () => {
-    skillObserver.disconnect();
-  });
-</script>
